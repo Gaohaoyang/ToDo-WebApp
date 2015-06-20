@@ -1,7 +1,3 @@
-.test {
-    background-color: red;
-}
-
 /**
  * reset
  */
@@ -25,7 +21,7 @@ h2, h3 {
 body, button, input, textarea {
     font-family: 'Microsoft YaHei', 'SimHei', 'STHeiti', sans-serif;
 }
-body {
+.body-min-size {
     min-width: 700px;
     min-height: 400px;
 }
@@ -214,7 +210,7 @@ h1 {
 .task-list .active {
     background-color: #FbFbFb;
 }
-.task-done{
+.task-done {
     color: #24692B
 }
 .add-task {
@@ -320,7 +316,7 @@ h1 {
     padding: 8px 20px;
     margin-left: 15px;
 }
-.info{
+.info {
     color: #B35690
 }
 .save {
@@ -346,8 +342,8 @@ h1 {
     height: 180px;
     padding: 15px;
     background-color: #eee;
-    margin-left: -160px;
-    margin-top: -90px;
+    margin-left: -175px;
+    margin-top: -105px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -401,4 +397,22 @@ h1 {
 .modal-foot button:hover {
     background-color: #A8AAC5;
     color: #fff;
+}
+@media screen and (max-width:800px) {
+    .body-min-size {
+        min-width: inherit;
+        min-height: inherit;
+    }
+    .left {
+        width: 100%;
+    }
+    .mid, .right {
+        display: none;
+    }
+    .modal{
+        width: 300px;
+        padding: 0;
+        margin-left: -150px;
+        margin-top: -90px;
+    }
 }
