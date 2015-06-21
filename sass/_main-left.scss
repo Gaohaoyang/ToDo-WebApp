@@ -1,0 +1,98 @@
+%pos{
+    position: absolute;
+    left: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.left {
+    width: 240px;
+    @extend %pos;    
+    top: 0;
+    bottom: 0;
+    background: #DADADA;
+    font-size: 1.6rem;   
+
+    /**
+     * shadow
+     */
+    -webkit-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+    -o-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
+    z-index: 8;
+
+    line-height: 2;
+
+    // 条目
+    h2, h3 {
+        font-size: 1.6rem;
+    }
+
+    .active{
+        background-color: #eee;
+    }
+
+    i {
+        margin-right: 5px;
+    }
+}
+
+
+.all-tasks{
+    @extend %pos;
+    top:0;
+    width:100%;
+    cursor: pointer;
+    padding-left: 15px;
+
+}
+.cate{
+    @extend %pos;
+    top:32px;
+    padding-left: 15px;
+}
+.list{
+    @extend %pos;
+    width:100%;
+    top:64px;
+    bottom:60px;
+    overflow-y:auto;
+    h2{
+        padding-left: 15px;
+
+        &:hover{
+            background-color: #eee;
+        }
+    }
+    h3{
+        padding-left: 30px;
+        &:hover{
+            background-color: #eee;
+        }
+    }
+}
+.add{
+    @extend %pos;
+    width:100%;
+    bottom:0;
+    height: 60px;
+    font-size: 1.6rem;
+    background-color: #CACACA;
+    border: none;
+    cursor: pointer;
+    outline: none;
+
+    font-family: $base-ff;
+
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease;
+
+    &:hover{
+        background-color: #C1C3DE;
+        color: #343521;
+    }
+}
