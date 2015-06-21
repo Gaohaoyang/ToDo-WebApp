@@ -1,3 +1,77 @@
-.cover{
-    display:none;
+/**
+ * modal
+ */
+.cover {
+    display: none;
+    @extend %pos;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+}
+.modal {
+    width: $modal-width;
+    height: $modal-height;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: $modal-padding;
+    background-color: #eee;
+    margin-left: -$modal-width/2;
+    margin-top: -$modal-height/2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    -webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    -o-box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+.modal-head {
+    font-size: 2.2rem;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+}
+.modal-body {
+    margin-top: 6px;
+    padding-top: 10px;
+    padding-left: 30px;
+    line-height: 2.2;
+    border-top: 1px dashed #C6CAE0;
+
+    select, input {
+        width: 160px;
+        height: 24px;
+        padding-left: 5px;
+        border: 1px solid #C6CAE0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+}
+.modal-foot {
+    text-align: right;
+    padding-top: 14px;
+    padding-right: 20px;
+
+    button {
+        background-color: #D8D8D8;
+        border: none;
+        cursor: pointer;
+        padding: 5px 20px;
+        margin-left: 10px;
+        transition: 0.2s ease;
+        -webkit-transition: 0.2s ease;
+        -moz-transition: 0.2s ease;
+        -o-transition: 0.2s ease;
+
+        &:hover {
+            background-color: $statusBtnActive-bgColor;
+            color: $whiteFont;
+        }
+    }
 }

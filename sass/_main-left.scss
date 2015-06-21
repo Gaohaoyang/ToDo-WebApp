@@ -1,11 +1,6 @@
-%pos{
-    position: absolute;
-    left: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
+/**
+ * left
+ */
 .left {
     width: 240px;
     @extend %pos;    
@@ -25,53 +20,54 @@
 
     line-height: 2;
 
-    // 条目
-    h2, h3 {
-        font-size: 1.6rem;
-    }
-
     .active{
         background-color: #eee;
     }
-
-    i {
-        margin-right: 5px;
-    }
 }
-
 
 .all-tasks{
     @extend %pos;
     top:0;
     width:100%;
+    height:32px+$top-gap;
     cursor: pointer;
     padding-left: 15px;
-
+    line-height: 40px;
 }
 .cate{
     @extend %pos;
-    top:32px;
+    top:32px+$top-gap;
     padding-left: 15px;
 }
 .list{
     @extend %pos;
     width:100%;
-    top:64px;
+    top:64px+$top-gap;
     bottom:60px;
     overflow-y:auto;
-    h2{
+    h2,h3{
+        font-size: 1.6rem;
         padding-left: 15px;
+        cursor: pointer;
+        position:relative;
 
         &:hover{
             background-color: #eee;
+            .fa-trash-o{
+                display:block;
+            }
         }
     }
     h3{
         padding-left: 30px;
-        &:hover{
-            background-color: #eee;
-        }
     }
+}
+.fa-trash-o {
+    display: none;
+    font-size: 1.8rem;
+    position: absolute;
+    right: 5px;
+    top: 8px;
 }
 .add{
     @extend %pos;
@@ -82,9 +78,6 @@
     background-color: #CACACA;
     border: none;
     cursor: pointer;
-    outline: none;
-
-    font-family: $base-ff;
 
     transition: 0.2s ease;
     -webkit-transition: 0.2s ease;

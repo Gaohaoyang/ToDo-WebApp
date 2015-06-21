@@ -12,3 +12,27 @@ h1, h2, h3 {
 html{
     font-size:62.5%;
 }
+
+/**
+ * common
+ */
+body{
+    font-family:$base-ff;
+}
+button,select,input{
+    font-family: $base-ff;
+    outline: none;
+}
+
+i {
+    margin-right: 5px;
+}
+
+// layout in main and modal
+%pos{
+    position: absolute;
+    left: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

@@ -1,2 +1,20 @@
 //base-font-family
 $base-ff: 'Microsoft YaHei', 'SimHei', 'STHeiti', sans-serif;
+
+// used in main left layout
+$top-gap:5px;
+
+// main mid status button
+$statusBtnActive-bgColor:#A8AAC5;
+$whiteFont:#fff;
+
+// main mid list active color
+$taskListActiveColor:#FbFbFb;
+$taskDoneGreen:#24692B;
+
+
+
+// modal size
+$modal-width:335px;
+$modal-height:195px;
+$modal-padding:15px;
