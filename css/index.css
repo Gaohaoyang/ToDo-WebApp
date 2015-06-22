@@ -6,44 +6,36 @@
  */
 div, body, h1, h2, h3, ul, li {
   margin: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 li {
-  list-style-type: none;
-}
+  list-style-type: none; }
 
 h1, h2, h3 {
-  font-weight: normal;
-}
+  font-weight: normal; }
 
 html {
-  font-size: 62.5%;
-}
+  font-size: 62.5%; }
 
 /**
  * common
  */
 body {
-  font-family: "Microsoft YaHei", "SimHei", "STHeiti", sans-serif;
-}
+  font-family: "Microsoft YaHei", "SimHei", "STHeiti", sans-serif; }
 
-button, select, input {
+button, select, input, textarea {
   font-family: "Microsoft YaHei", "SimHei", "STHeiti", sans-serif;
-  outline: none;
-}
+  outline: none; }
 
 i {
-  margin-right: 5px;
-}
+  margin-right: 5px; }
 
-.left, .all-tasks, .cate, .list, .add, .mid, .status, .task-list, .right, .title, .task-date, .content, .button-area, .textarea-content, .cover {
+.left, .all-tasks, .cate, .list, .add, .mid, .status, .task-list, .right, .title, .task-date, .content, .cover {
   position: absolute;
   left: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 /**
  * header
@@ -65,17 +57,14 @@ i {
   -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  z-index: 10;
-}
-.header h1 {
-  font-size: 2.4rem;
-  color: #fff;
-  line-height: 60px;
-  margin-left: 15px;
-}
-.header h1 i {
-  margin-right: 10px;
-}
+  z-index: 10; }
+  .header h1 {
+    font-size: 2.4rem;
+    color: #fff;
+    line-height: 60px;
+    margin-left: 15px; }
+    .header h1 i {
+      margin-right: 10px; }
 
 /**
  * main
@@ -89,8 +78,7 @@ i {
   left: 0;
   top: 60px;
   bottom: 0;
-  z-index: 9;
-}
+  z-index: 9; }
 
 /**
  * left
@@ -109,11 +97,9 @@ i {
   -o-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
   z-index: 8;
-  line-height: 2;
-}
-.left .active {
-  background-color: #eee;
-}
+  line-height: 2; }
+  .left .active {
+    background-color: #eee; }
 
 .all-tasks {
   top: 0;
@@ -121,43 +107,35 @@ i {
   height: 37px;
   cursor: pointer;
   padding-left: 15px;
-  line-height: 40px;
-}
+  line-height: 40px; }
 
 .cate {
   top: 37px;
-  padding-left: 15px;
-}
+  padding-left: 15px; }
 
 .list {
   width: 100%;
   top: 69px;
   bottom: 60px;
-  overflow-y: auto;
-}
-.list h2, .list h3 {
-  font-size: 1.6rem;
-  padding-left: 15px;
-  cursor: pointer;
-  position: relative;
-}
-.list h2:hover, .list h3:hover {
-  background-color: #eee;
-}
-.list h2:hover .fa-trash-o, .list h3:hover .fa-trash-o {
-  display: block;
-}
-.list h3 {
-  padding-left: 30px;
-}
+  overflow-y: auto; }
+  .list h2, .list h3 {
+    font-size: 1.6rem;
+    padding-left: 15px;
+    cursor: pointer;
+    position: relative; }
+    .list h2:hover, .list h3:hover {
+      background-color: #eee; }
+      .list h2:hover .fa-trash-o, .list h3:hover .fa-trash-o {
+        display: block; }
+  .list h3 {
+    padding-left: 30px; }
 
 .fa-trash-o {
   display: none;
   font-size: 1.8rem;
   position: absolute;
   right: 5px;
-  top: 8px;
-}
+  top: 8px; }
 
 .add {
   width: 100%;
@@ -170,12 +148,10 @@ i {
   transition: 0.2s ease;
   -webkit-transition: 0.2s ease;
   -moz-transition: 0.2s ease;
-  -o-transition: 0.2s ease;
-}
-.add:hover {
-  background-color: #C1C3DE;
-  color: #343521;
-}
+  -o-transition: 0.2s ease; }
+  .add:hover {
+    background-color: #C1C3DE;
+    color: #343521; }
 
 /**
  * mid
@@ -190,13 +166,11 @@ i {
   -moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
   -o-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
-  z-index: 7;
-}
+  z-index: 7; }
 
 .status button:hover, .status .active {
   background-color: #A8AAC5;
-  color: #fff;
-}
+  color: #fff; }
 
 .status {
   width: 100%;
@@ -204,24 +178,21 @@ i {
   top: 0;
   text-align: center;
   line-height: 60px;
-  border-bottom: 1px dashed #A6A6A6;
-}
-.status button {
-  width: 60px;
-  height: 30px;
-  margin: 0 5px;
-  background-color: #D8D8D8;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  transition: 0.2s ease;
-  -webkit-transition: 0.2s ease;
-  -moz-transition: 0.2s ease;
-  -o-transition: 0.2s ease;
-}
-.status .active {
-  cursor: default;
-}
+  border-bottom: 1px dashed #A6A6A6; }
+  .status button {
+    width: 60px;
+    height: 30px;
+    margin: 0 5px;
+    background-color: #D8D8D8;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease; }
+  .status .active {
+    cursor: default; }
 
 .task-list {
   width: 100%;
@@ -229,35 +200,28 @@ i {
   bottom: 60px;
   line-height: 2;
   font-size: 1.4rem;
-  overflow-y: auto;
-}
-.task-list div {
-  line-height: 2.3;
-  background-color: #dadada;
-  padding-left: 10px;
-}
-.task-list li {
-  padding-left: 20px;
-  cursor: pointer;
-  transition: 0.2s ease-out;
-  -webkit-transition: 0.2s ease-out;
-  -moz-transition: 0.2s ease-out;
-  -o-transition: 0.2s ease-out;
-}
-.task-list li:hover {
-  background-color: #FbFbFb;
-}
-.task-list .active {
-  background-color: #FbFbFb;
-}
+  overflow-y: auto; }
+  .task-list div {
+    line-height: 2.3;
+    background-color: #dadada;
+    padding-left: 10px; }
+  .task-list li {
+    padding-left: 20px;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    -webkit-transition: 0.2s ease-out;
+    -moz-transition: 0.2s ease-out;
+    -o-transition: 0.2s ease-out; }
+    .task-list li:hover {
+      background-color: #FbFbFb; }
+  .task-list .active {
+    background-color: #FbFbFb; }
 
 .task-done {
-  color: #24692B;
-}
+  color: #24692B; }
 
 .add-task {
-  background-color: #D8D8D8;
-}
+  background-color: #D8D8D8; }
 
 /**
  * right
@@ -269,15 +233,12 @@ i {
   left: 500px;
   z-index: 6;
   background-color: #fff;
-  font-size: 1.6rem;
-}
-.right input {
-  font-size: 1.6rem;
-  border: 1px solid #AEAEAE;
-}
-.right input:focus {
-  border: 1px solid #404040;
-}
+  font-size: 1.6rem; }
+  .right input {
+    font-size: 1.6rem;
+    border: 1px solid #AEAEAE; }
+    .right input:focus {
+      border: 1px solid #404040; }
 
 .title {
   width: 100%;
@@ -288,25 +249,21 @@ i {
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  z-index: 5;
-}
+  z-index: 5; }
 
 .todo-name {
   padding-left: 15px;
   float: left;
   font-size: 1.8rem;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .manipulate {
   font-size: 26px;
   padding-right: 20px;
-  float: right;
-}
-.manipulate a {
-  margin-right: 15px;
-  cursor: pointer;
-}
+  float: right; }
+  .manipulate a {
+    margin-right: 15px;
+    cursor: pointer; }
 
 .task-date {
   width: 100%;
@@ -319,38 +276,57 @@ i {
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   -o-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  z-index: 4;
-}
+  z-index: 4; }
 
 .content {
   width: 100%;
   top: 110px;
-}
+  overflow-y: auto;
+  padding: 15px 15px 0; }
+
+.content-with-button {
+  bottom: 60px; }
+
+.content-no-button {
+  bottom: 0; }
 
 .button-area {
-  bottom: 0;
-  right: 0;
-  background: red;
-}
+  height: 60px;
+  line-height: 60px;
+  position: absolute;
+  right: 20px;
+  bottom: 0; }
+  .button-area button {
+    border: none;
+    cursor: pointer;
+    padding: 8px 20px;
+    margin-left: 15px; }
+
+.info {
+  color: #B35690; }
+
+.save {
+  background-color: #95A0D8;
+  color: #fff; }
 
 .input-title {
   padding: 7px 10px;
   margin-top: 10px;
-  width: 244px;
-}
+  width: 244px; }
 
 .input-date {
-  padding: 5px 10px;
-}
+  padding: 5px 10px; }
 
 .textarea-content {
-  width: 100%;
-  bottom: 100px;
+  width: 99%;
+  height: 96%;
   margin: 0;
   /* don't want to add to container size */
   border: 0;
   /* don't want to add to container size */
-}
+  font-size: 1.6rem;
+  resize: none;
+  line-height: 1.6; }
 
 /**
  * modal
@@ -365,8 +341,7 @@ i {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 99;
-}
+  z-index: 99; }
 
 .modal {
   width: 335px;
@@ -385,52 +360,45 @@ i {
   -webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
   -o-box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
-}
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8); }
 
 .modal-head {
   font-size: 2.2rem;
   text-align: center;
   height: 40px;
-  line-height: 40px;
-}
+  line-height: 40px; }
 
 .modal-body {
   margin-top: 6px;
   padding-top: 10px;
   padding-left: 30px;
   line-height: 2.2;
-  border-top: 1px dashed #C6CAE0;
-}
-.modal-body select, .modal-body input {
-  width: 160px;
-  height: 24px;
-  padding-left: 5px;
-  border: 1px solid #C6CAE0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+  border-top: 1px dashed #C6CAE0; }
+  .modal-body select, .modal-body input {
+    width: 160px;
+    height: 24px;
+    padding-left: 5px;
+    border: 1px solid #C6CAE0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
 
 .modal-foot {
   text-align: right;
   padding-top: 14px;
-  padding-right: 20px;
-}
-.modal-foot button {
-  background-color: #D8D8D8;
-  border: none;
-  cursor: pointer;
-  padding: 5px 20px;
-  margin-left: 10px;
-  transition: 0.2s ease;
-  -webkit-transition: 0.2s ease;
-  -moz-transition: 0.2s ease;
-  -o-transition: 0.2s ease;
-}
-.modal-foot button:hover {
-  background-color: #A8AAC5;
-  color: #fff;
-}
+  padding-right: 20px; }
+  .modal-foot button {
+    background-color: #D8D8D8;
+    border: none;
+    cursor: pointer;
+    padding: 5px 20px;
+    margin-left: 10px;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease; }
+    .modal-foot button:hover {
+      background-color: #A8AAC5;
+      color: #fff; }
 
 /*# sourceMappingURL=index.css.map */

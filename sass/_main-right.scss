@@ -66,14 +66,37 @@
     width: 100%;
     @extend %pos;
     top: 110px;
+    overflow-y: auto;
+    // background: red;
+    padding:15px 15px 0;
+
+}
+.content-with-button{
+    bottom:60px;
+}
+.content-no-button{
+    bottom:0;
 }
 .button-area{
-    @extend %pos;
+    height: 60px;
+    line-height: 60px;
+    position: absolute;
+    right:20px;
     bottom:0;
-    right:0;
-    background:red;
-    // bottom: 15px;
-    // right: 20px;
+    // background-color:blue;
+    button {
+        border: none;
+        cursor: pointer;
+        padding: 8px 20px;
+        margin-left: 15px;
+    }
+}
+.info {
+    color: #B35690
+}
+.save {
+    background-color: #95A0D8;
+    color: #fff;
 }
 
 // edit
@@ -86,13 +109,11 @@
     padding: 5px 10px;
 }
 .textarea-content {
-    width: 100%;
-    @extend %pos;
-    bottom:100px;
-    // height: 100%;
+    width: 99%;
+    height: 96%;
     margin: 0; /* don't want to add to container size */
     border: 0; /* don't want to add to container size */
-    // font-size: 16px;
-    // resize: none;
-    // line-height: 1.6;
+    font-size: 1.6rem;
+    resize: none;
+    line-height: 1.6;
 }

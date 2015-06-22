@@ -957,10 +957,13 @@ function clickTask(element) {
  */
 function generateTaskById(taskId) {
     var task = queryTaskById(taskId);
+    var contentArea = $(".content");
 
     $(".todo-name").innerHTML = task.name;
     $(".task-date span").innerHTML = task.date;
-    $(".content").innerHTML = task.content;
+    contentArea.innerHTML = task.content;
+    removeClass(contentArea,"content-with-button");
+    addClass(contentArea,"content-no-button");
 
     $(".button-area").style.display = "none";
 
@@ -1001,7 +1004,10 @@ function clickAddTask() {
         $(".todo-name").innerHTML = '<input type="text" class="input-title" placeholder="请输入标题">';
         $(".manipulate").innerHTML = "";
         $(".task-date span").innerHTML = '<input type="date" class="input-date">';
-        $(".content").innerHTML = '<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>';
+        var contentArea = $(".content");
+        contentArea.innerHTML = '<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>';
+        removeClass(contentArea,"content-no-button");
+        addClass(contentArea,"content-with-button");
         $(".button-area").innerHTML = '<span class="info"></span>                    <button class="save">保存</button>                    <button class="cancel-save">放弃</button>';
         $(".button-area").style.display = "block";
         clickSaveOrCancel();
@@ -1105,10 +1111,12 @@ function checkTaskDone() {
  */
 function changeTask() {
     var task = queryTaskById(currentTaskId);
+    var contentArea = $(".content");
     $(".todo-name").innerHTML = '<input type="text" class="input-title" placeholder="请输入标题" value="' + task.name + '">';
     $(".manipulate").innerHTML = "";
     $(".task-date span").innerHTML = '<input type="date" class="input-date" value="' + task.date + '">';
-    $(".content").innerHTML = '<textarea class="textarea-content" placeholder="请输入任务内容">' + task.content + '</textarea>';
+    contentArea.innerHTML = '<textarea class="textarea-content" placeholder="请输入任务内容">' + task.content + '</textarea>';
+    contentArea.setAttribute("class","content content-with-button");
     $(".button-area").innerHTML = '<span class="info"></span>                    <button class="save">保存修改</button>                    <button class="cancel-save">放弃</button>';
     $(".button-area").style.display = "block";
     changeSaveOrNot();
