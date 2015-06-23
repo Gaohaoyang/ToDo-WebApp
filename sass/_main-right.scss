@@ -109,11 +109,12 @@
     padding: 5px 10px;
 }
 .textarea-content {
-    width: 99%;
+    width: 98%;
     height: 96%;
     margin: 0; /* don't want to add to container size */
     border: 0; /* don't want to add to container size */
     font-size: 1.6rem;
     resize: none;
     line-height: 1.6;
+    // background-color:red;
 }

@@ -91,7 +91,7 @@ function initDataBase() {
                 "finish": true,
                 "name": "使用说明",
                 "date": "2015-06-05",
-                "content": "本应用为离线应用，数据将存储在本地硬盘<br><br>左侧为分类列表<br>中间为当前分类下的任务列表<br>右侧为任务详情<br><br>可以添加删除分类，添加任务，修改任务，以及给任务标记是否完成等功能<br><br>by <a target='_blank' href='http://gaohaoyang.github.io'>Gaohaoyang</a>",
+                "content": "本应用为离线应用，数据将存储在本地硬盘\n\n左侧为分类列表\n中间为当前分类下的任务列表\n右侧为任务详情\n\n可以添加删除分类，添加任务，修改任务，以及给任务标记是否完成等功能\n\nby Gaohaoyang\nhttp://gaohaoyang.github.io ",
             }
             /*, {
             "id": 0,
@@ -633,7 +633,7 @@ function initCates() {
             if (i === 0) {
                 // var childCateDefault = queryChildCatesById(0);
                 // liStr = '<li><h2 cateid=' + cate[i].id + ' onclick="clickCate(this)"><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + queryTasksLengthByCate(cate[i]) + ')</h2><ul><li><h3 cateid=' + childCateArr[j].id + ' onclick="clickCate(this)"><i class="fa fa-file-o"></i><span>' + childCateDefault.name + '</span> (' + childCateDefault.length + ')</h3></li>';
-                liStr = '<li><h2 cateid=0 onclick="clickCate(this)"><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (1)</h2><ul><li><h3 cateid=0 onclick="clickCate(this)"><i class="fa fa-file-o"></i><span>' + defaultChildCate.name + '</span> (' + defaultChildCate.child.length + ')</h3></li>';
+                liStr = '<li><h2 cateid=0 onclick="clickCate(this)"><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + queryTasksLengthByCate(cate[i]) + ')</h2><ul><li><h3 cateid=0 onclick="clickCate(this)"><i class="fa fa-file-o"></i><span>' + defaultChildCate.name + '</span> (' + defaultChildCate.child.length + ')</h3></li>';
             } else {
                 liStr = '<li><h2 cateid=' + cate[i].id + ' onclick="clickCate(this)"><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + queryTasksLengthByCate(cate[i]) + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h2><ul>';
                 var childCateArr = queryChildCatesByIdArray(cate[i].child);
@@ -775,7 +775,9 @@ function clickCate(element) {
     //状态按钮默认跳到所有上面
     cleanAllActiveOnStatusButton();
     addClass($("#all-tasks"), "active");
-    addClass($("[taskid]"), "active"); //将第一个有 taskid 属性的元素高亮
+    if ($("[taskid]") !== undefined) {
+        addClass($("[taskid]"), "active"); //将第一个有 taskid 属性的元素高亮
+    }
 
     generateTaskById(currentTaskId);
 }
@@ -961,9 +963,10 @@ function generateTaskById(taskId) {
 
     $(".todo-name").innerHTML = task.name;
     $(".task-date span").innerHTML = task.date;
-    contentArea.innerHTML = task.content;
-    removeClass(contentArea,"content-with-button");
-    addClass(contentArea,"content-no-button");
+    contentArea.innerHTML = '<textarea class="textarea-content" readonly="readonly"></textarea>';
+    $(".textarea-content").value = task.content;
+    removeClass(contentArea, "content-with-button");
+    addClass(contentArea, "content-no-button");
 
     $(".button-area").style.display = "none";
 
@@ -1006,8 +1009,8 @@ function clickAddTask() {
         $(".task-date span").innerHTML = '<input type="date" class="input-date">';
         var contentArea = $(".content");
         contentArea.innerHTML = '<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>';
-        removeClass(contentArea,"content-no-button");
-        addClass(contentArea,"content-with-button");
+        removeClass(contentArea, "content-no-button");
+        addClass(contentArea, "content-with-button");
         $(".button-area").innerHTML = '<span class="info"></span>                    <button class="save">保存</button>                    <button class="cancel-save">放弃</button>';
         $(".button-area").style.display = "block";
         clickSaveOrCancel();
@@ -1020,14 +1023,15 @@ function clickAddTask() {
  */
 function clickSaveOrCancel() {
     addClickEvent($(".save"), function() {
-        console.log("save");
-        console.log(currentCateId);
-        console.log(currentCateTable);
-
         var title = $(".input-title");
         var content = $(".textarea-content");
         var date = $(".input-date");
         var info = $(".info");
+        console.log("save");
+        console.log(currentCateId);
+        console.log(currentCateTable);
+        console.log(content.value);
+
 
         if (title.value === "") {
             info.innerHTML = "标题不能为空";
@@ -1116,7 +1120,7 @@ function changeTask() {
     $(".manipulate").innerHTML = "";
     $(".task-date span").innerHTML = '<input type="date" class="input-date" value="' + task.date + '">';
     contentArea.innerHTML = '<textarea class="textarea-content" placeholder="请输入任务内容">' + task.content + '</textarea>';
-    contentArea.setAttribute("class","content content-with-button");
+    contentArea.setAttribute("class", "content content-with-button");
     $(".button-area").innerHTML = '<span class="info"></span>                    <button class="save">保存修改</button>                    <button class="cancel-save">放弃</button>';
     $(".button-area").style.display = "block";
     changeSaveOrNot();
