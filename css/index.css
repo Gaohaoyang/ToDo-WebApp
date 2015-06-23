@@ -325,7 +325,7 @@ i {
 .content {
   width: 100%;
   top: 110px;
-  overflow-y: auto;
+  overflow-y: hidden;
   padding: 15px 15px 0;
 }
 
