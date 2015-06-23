@@ -21,3 +21,10 @@
  * modal
  */
 @import 'modal';
+
+/**
+ * mobile fit
+ */
+@media screen and (max-width:770px) {
+    @import 'mobileFit';
+}

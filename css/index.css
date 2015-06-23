@@ -67,6 +67,9 @@ i {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
+.header div {
+  display: none;
+}
 .header h1 {
   font-size: 2.4rem;
   color: #fff;
@@ -461,6 +464,70 @@ i {
 .modal-foot button:hover {
   background-color: #A8AAC5;
   color: #fff;
+}
+
+/**
+ * mobile fit
+ */
+@media screen and (max-width: 770px) {
+  .header {
+    height: 44px;
+  }
+  .header div {
+    position: absolute;
+    left: 15px;
+    bottom: 10px;
+    font-size: 1.4rem;
+    color: #fff;
+  }
+  .header h1 {
+    text-align: center;
+    line-height: 44px;
+    font-size: 2rem;
+  }
+  .header h1 i {
+    margin-right: 6px;
+  }
+
+  .main {
+    top: 44px;
+    overflow: hidden;
+  }
+
+  .left, .mid, .right {
+    width: 100%;
+    left: 0;
+    -webkit-transition: 0.3s  ease-in-out;
+    transition: 0.3s  ease-in-out;
+  }
+
+  /**
+   * animation
+   */
+  .page-active {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .page-next {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  .page-next-next {
+    -webkit-transform: translate3d(200%, 0, 0);
+    transform: translate3d(200%, 0, 0);
+  }
+
+  .page-pre {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  .page-pre-pre {
+    -webkit-transform: translate3d(-200%, 0, 0);
+    transform: translate3d(-200%, 0, 0);
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

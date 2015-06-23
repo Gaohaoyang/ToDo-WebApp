@@ -20,10 +20,11 @@
     </head>
     <body class="body-min-size">
         <div class="header">
+            <div id="backBtn"><i class="fa fa-chevron-left"></i> 返回</div>
             <h1><i class="fa fa-th"></i></i> ToDo</h1>
         </div>
         <div class="main">
-            <div class="left">
+            <div class="left page-active">
                 <div id="allTasks" cateid="-1" class="list-title all-tasks active" onclick="clickCate(this)">
                    <i class="fa fa-globe"></i> 所有任务 (<span>7</span>)
                 </div>
@@ -47,7 +48,7 @@
                 </div>
                 <button class="add" onclick="clickAddCate()"><i class="fa fa-plus"></i>新增分类</button>
             </div>
-            <div class="mid">
+            <div class="mid page-next">
                 <div class="status">
                     <button id="all-tasks" class="active">所有</button>
                     <button id="unfinish-tasks">未完成</button>

@@ -18,6 +18,10 @@
     -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     z-index: 10;
+    
+    div{
+        display:none;
+    }
 
     h1 {
         font-size:2.4rem;
@@ -29,3 +33,22 @@
         }
     }
 }
+
+// @media screen and (max-width:800px) {
+//     .body-min-size {
+//         min-width: inherit;
+//         min-height: inherit;
+//     }
+//     .left {
+//         width: 100%;
+//     }
+//     .mid, .right {
+//         display: none;
+//     }
+//     .modal{
+//         width: 300px;
+//         padding: 0;
+//         margin-left: -150px;
+//         margin-top: -90px;
+//     }
+// }

@@ -14,7 +14,6 @@ function initAll() {
     cateTaskStatusController(); //任务状态分类
     generateTaskById(-1); //初始化任务详细
     addClass($("[taskid]"), "active"); //将第一个有 taskid 属性的元素高亮
-    // clickSaveOrCancel(); //保存或放弃保存任务
     listAllStorage();
 }
 
@@ -780,6 +779,8 @@ function clickCate(element) {
     }
 
     generateTaskById(currentTaskId);
+
+    showScreen2();
 }
 
 /**
@@ -950,6 +951,8 @@ function clickTask(element) {
 
     cleanTasksHighLight();
     addClass(element, "active");
+
+    showScreen3();
 }
 
 /**
@@ -1015,6 +1018,8 @@ function clickAddTask() {
         $(".button-area").style.display = "block";
         clickSaveOrCancel();
     }
+
+    showScreen3();
 }
 
 /**
@@ -1076,6 +1081,7 @@ function clickSaveOrCancel() {
     });
     addClickEvent($(".cancel-save"), function() {
         console.log("cancel save");
+        showScreen2();
         generateTaskById(currentTaskId);
     });
 }
@@ -1174,6 +1180,61 @@ function changeSaveOrNot() {
         generateTaskById(currentTaskId);
     });
 }
+
+function showScreen1() {
+    $(".left").setAttribute("class", "left page-active");
+    $(".mid").setAttribute("class", "mid page-next");
+    $(".right").setAttribute("class", "right page-next-next");
+    currentScreen = 1;
+    clickBackBtn(currentScreen);
+
+}
+
+function showScreen2() {
+    $(".left").setAttribute("class", "left page-pre");
+    $(".mid").setAttribute("class", "mid page-active");
+    $(".right").setAttribute("class", "right page-next");
+    currentScreen = 2;
+    clickBackBtn(currentScreen);
+}
+
+function showScreen3() {
+    $(".left").setAttribute("class", "left page-pre-pre");
+    $(".mid").setAttribute("class", "mid page-pre");
+    $(".right").setAttribute("class", "right page-active");
+    currentScreen = 3;
+    clickBackBtn(currentScreen);
+}
+
+/**
+ * 返回键监听
+ * @param  {number} currentScreen 当前页
+ * @return {[type]}               [description]
+ */
+function clickBackBtn(currentScreen) {
+    var backBtn = $("#backBtn");
+
+    switch (currentScreen) {
+        case 1:
+            backBtn.style.display = "none";
+            break;
+        case 2:
+            backBtn.style.display = "block";
+            addClickEvent(backBtn, function() {
+                showScreen1();
+            });
+            break;
+        case 3:
+            backBtn.style.display = "block";
+            addClickEvent(backBtn, function() {
+                showScreen2();
+            });
+            break;
+        default:
+            break;
+    }
+}
+
 
 /*[{
     date: "2015-06-05",
