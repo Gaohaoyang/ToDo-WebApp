@@ -968,8 +968,9 @@ function generateTaskById(taskId) {
     $(".task-date span").innerHTML = task.date;
     contentArea.innerHTML = '<textarea class="textarea-content" readonly="readonly"></textarea>';
     $(".textarea-content").value = task.content;
-    removeClass(contentArea, "content-with-button");
-    addClass(contentArea, "content-no-button");
+    // removeClass(contentArea, "content-with-button");
+    // addClass(contentArea, "content-no-button");
+    contentArea.setAttribute("class","content content-no-button");
 
     $(".button-area").style.display = "none";
 
@@ -1012,8 +1013,9 @@ function clickAddTask() {
         $(".task-date span").innerHTML = '<input type="date" class="input-date">';
         var contentArea = $(".content");
         contentArea.innerHTML = '<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>';
-        removeClass(contentArea, "content-no-button");
-        addClass(contentArea, "content-with-button");
+        // removeClass(contentArea, "content-no-button");
+        // addClass(contentArea, "content-with-button");
+        contentArea.setAttribute("class","content content-with-button");
         $(".button-area").innerHTML = '<span class="info"></span>                    <button class="save">保存</button>                    <button class="cancel-save">放弃</button>';
         $(".button-area").style.display = "block";
         clickSaveOrCancel();

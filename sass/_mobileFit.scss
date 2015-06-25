@@ -40,7 +40,72 @@
 .right{
     @extend %mobile-pos;
 }
+.content{
+    padding:5px 8px 0 15px;
+}
+.title {
+    height:44px;
+    line-height: 46px;
+}
+.task-date{
+    height:44px;
+    top: 44px;
+    line-height: 46px;
+}
+.content {
+    top:88px;
+}
+.manipulate {
+    padding-right: 0;
+}
 
+// edit
+.input-title {
+    padding: 5px 10px;
+    margin-top: 0;
+    // width: 244px;
+    // height:44px;
+}
+.input-date {
+    // padding: 5px 10px;
+}
+.textarea-content {
+    width: 98%;
+    height: 100%;
+}
+
+/**
+ * modal
+ */
+$modal-width:300px;
+$modal-height:190px;
+$modal-padding:5px;
+.modal{
+    width:$modal-width;
+    height:$modal-height;
+    padding:$modal-padding;
+    margin-left: -$modal-width/2;
+    margin-top: -$modal-height/2;
+}
+.modal-head {
+    font-size: 1.8rem;
+    height: 36px;
+    line-height: 36px;
+}
+.modal-body {
+    font-size: 1.4rem;
+    line-height: 2.8;
+
+    select, input {
+        width: 160px;
+        height: 28px;
+        padding-left: 5px;
+        // border: 1px solid #C6CAE0;
+        // -webkit-box-sizing: border-box;
+        // -moz-box-sizing: border-box;
+        // box-sizing: border-box;
+    }
+}
 /**
  * animation
  */
