@@ -1,7 +1,7 @@
 .header{
     height:44px;
     div{
-        // display:block;
+        display:none;
         position: absolute;
         left:15px;
         bottom:10px;
@@ -11,6 +11,8 @@
     h1{
         // display:inline-block;
         text-align:center;
+        margin-left: 0;
+
         line-height: 44px;
         font-size:2rem;
         i{
@@ -33,15 +35,16 @@
     @extend %mobile-pos;
     // display:none;
 }
+.fa-trash-o {
+    display: block;
+    right:15px;
+}
 .mid{
     @extend %mobile-pos;
     // display:none;
 }
 .right{
     @extend %mobile-pos;
-}
-.content{
-    padding:5px 8px 0 15px;
 }
 .title {
     height:44px;
@@ -52,11 +55,28 @@
     top: 44px;
     line-height: 46px;
 }
-.content {
-    top:88px;
-}
 .manipulate {
     padding-right: 0;
+}
+.content {
+    padding:5px 8px 0 15px;
+    top:88px;
+}
+.content-with-button{
+    bottom:40px;
+}
+.button-area{
+    height: 40px;
+    // line-height: 60px;
+    position: absolute;
+    right:20px;
+    bottom:0;
+    // padding:7px 15px;
+    // background-color:blue;
+    padding-bottom:5px;
+    button {
+        height:32px;
+    }
 }
 
 // edit

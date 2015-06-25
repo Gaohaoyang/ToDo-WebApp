@@ -179,12 +179,11 @@ i {
   height: 55px;
   top: 0;
   text-align: center;
-  line-height: 60px;
   border-bottom: 1px dashed #A6A6A6; }
 .status button {
   width: 60px;
   height: 30px;
-  margin: 0 5px;
+  margin: 13px 5px;
   background-color: #D8D8D8;
   border: none;
   cursor: pointer;
@@ -287,18 +286,22 @@ i {
   padding: 15px 15px 0; }
 
 .content-with-button {
-  bottom: 60px; }
+  bottom: 50px; }
 
 .content-no-button {
   bottom: 0; }
 
 .button-area {
-  height: 60px;
-  line-height: 60px;
+  height: 50px;
   position: absolute;
   right: 20px;
-  bottom: 0; }
+  bottom: 0;
+  padding-bottom: 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
 .button-area button {
+  height: 34px;
   border: none;
   cursor: pointer;
   padding: 8px 20px;
@@ -411,6 +414,7 @@ i {
   .header {
     height: 44px; }
   .header div {
+    display: none;
     position: absolute;
     left: 15px;
     bottom: 10px;
@@ -418,6 +422,7 @@ i {
     color: #fff; }
   .header h1 {
     text-align: center;
+    margin-left: 0;
     line-height: 44px;
     font-size: 2rem; }
   .header h1 i {
@@ -433,8 +438,9 @@ i {
     -webkit-transition: 0.3s  ease-in-out;
     transition: 0.3s  ease-in-out; }
 
-  .content {
-    padding: 5px 8px 0 15px; }
+  .fa-trash-o {
+    display: block;
+    right: 15px; }
 
   .title {
     height: 44px;
@@ -445,11 +451,24 @@ i {
     top: 44px;
     line-height: 46px; }
 
-  .content {
-    top: 88px; }
-
   .manipulate {
     padding-right: 0; }
+
+  .content {
+    padding: 5px 8px 0 15px;
+    top: 88px; }
+
+  .content-with-button {
+    bottom: 40px; }
+
+  .button-area {
+    height: 40px;
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+    padding-bottom: 5px; }
+  .button-area button {
+    height: 32px; }
 
   .input-title {
     padding: 5px 10px;

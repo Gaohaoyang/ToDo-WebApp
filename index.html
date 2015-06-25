@@ -13,6 +13,10 @@
         <meta name="apple-mobile-web-app-title" content="待办事项"><!-- 添加到主屏后的标题（iOS 6 新增） -->
         <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- 是否启用 WebApp 全屏模式 -->
         <meta name="theme-color" content="#3C3764">
+        
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
         <title>ToDo</title>
         <!-- <link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.2.0/css/font-awesome.min.css"> -->
         <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -26,11 +30,11 @@
         <div class="main">
             <div class="left page-active">
                 <div id="allTasks" cateid="-1" class="list-title all-tasks active" onclick="clickCate(this)">
-                   <i class="fa fa-globe"></i> 所有任务 (<span>7</span>)
+                    <i class="fa fa-globe"></i> 所有任务 (<span>1</span>)
                 </div>
                 <div class="cate"><i class="fa fa-list-ul"></i> 分类列表</div>
                 <div id="listcontent" class="list">
-                    <ul>
+                    <!-- <ul>
                         <li>
                             <h2 class="active"><i class="fa fa-folder-open"></i><span>百度IFE项目</span> (2)<i class="fa fa-trash-o"></i>
                             </h2>
@@ -44,7 +48,7 @@
                             </ul>
                         </li>
                         <li><h2><i class="fa fa-folder-open"></i><span>默认分类</span> (0)<i class="fa fa-trash-o"></i></h2></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <button class="add" onclick="clickAddCate()"><i class="fa fa-plus"></i>新增分类</button>
             </div>
@@ -55,7 +59,7 @@
                     <button id="finished-tasks">已完成</button>
                 </div>
                 <div id="task-list" class="task-list">
-                    <div>2015-06-05</div>
+                    <!-- <div>2015-06-05</div>
                     <ul>
                         <li taskid="1" class="active">todo-1</li>
                         <li taskid="2">todo-2</li>
@@ -64,7 +68,7 @@
                     <ul>
                         <li>todo-1</li>
                         <li>todo-2</li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <button class="add-task add" onclick="clickAddTask()"><i class="fa fa-plus"></i>新增任务</button>
             </div>
@@ -80,7 +84,7 @@
                     任务日期：<span>2015-06-05</span>
                 </div>
                 <div class="content">
-                   <textarea class="textarea-content"></textarea>
+                    <textarea class="textarea-content"></textarea>
                 </div>
                 <!--  <div class="title">
                     <div class="todo-name"><input type="text" class="input-title" placeholder="请输入标题"></div>

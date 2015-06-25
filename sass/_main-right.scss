@@ -72,19 +72,26 @@
 
 }
 .content-with-button{
-    bottom:60px;
+    bottom:50px;
 }
 .content-no-button{
     bottom:0;
 }
 .button-area{
-    height: 60px;
-    line-height: 60px;
+    height: 50px;
+    // line-height: 60px;
     position: absolute;
     right:20px;
     bottom:0;
+    // padding:7px 15px;
     // background-color:blue;
+    padding-bottom:5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     button {
+        
+        height:34px;
         border: none;
         cursor: pointer;
         padding: 8px 20px;

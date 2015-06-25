@@ -24,13 +24,13 @@
     @extend %pos;
     top: 0;
     text-align: center;
-    line-height: 60px;
+    // line-height: 60px;
     border-bottom: 1px dashed #A6A6A6;
 
     button {
         width: 60px;
         height: 30px;
-        margin: 0 5px;
+        margin: 13px 5px;
         background-color: #D8D8D8;
         border: none;
         cursor: pointer;

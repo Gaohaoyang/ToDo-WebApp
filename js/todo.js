@@ -681,6 +681,7 @@ function del(e, element) {
         }
     }
     initCates();
+    initModal();//刷新模态框选项
     $("#task-list").innerHTML = createTaskList(queryAllTasks()); //初始化任务列表
 }
 
@@ -970,7 +971,7 @@ function generateTaskById(taskId) {
     $(".textarea-content").value = task.content;
     // removeClass(contentArea, "content-with-button");
     // addClass(contentArea, "content-no-button");
-    contentArea.setAttribute("class","content content-no-button");
+    contentArea.setAttribute("class", "content content-no-button");
 
     $(".button-area").style.display = "none";
 
@@ -1007,6 +1008,8 @@ function clickAddTask() {
     // var cateChild = queryCateById(currentCateId).child;
     if (currentCateId != -1 && currentCateTable == "cate" && queryCateById(currentCateId).child.length === 0) {
         alert("请先建立子分类");
+        // confirm("请先建立子分类");
+        showScreen1();
     } else {
         $(".todo-name").innerHTML = '<input type="text" class="input-title" placeholder="请输入标题">';
         $(".manipulate").innerHTML = "";
@@ -1015,13 +1018,13 @@ function clickAddTask() {
         contentArea.innerHTML = '<textarea class="textarea-content" placeholder="请输入任务内容"></textarea>';
         // removeClass(contentArea, "content-no-button");
         // addClass(contentArea, "content-with-button");
-        contentArea.setAttribute("class","content content-with-button");
+        contentArea.setAttribute("class", "content content-with-button");
         $(".button-area").innerHTML = '<span class="info"></span>                    <button class="save">保存</button>                    <button class="cancel-save">放弃</button>';
         $(".button-area").style.display = "block";
         clickSaveOrCancel();
+        showScreen3();
     }
 
-    showScreen3();
 }
 
 /**
@@ -1049,9 +1052,10 @@ function clickSaveOrCancel() {
         } else {
             var taskObject = {};
             taskObject.finish = false;
-            taskObject.name = title.value;
+            taskObject.name = changeCode(title.value);
+            taskObject.date = changeCode(date.value);
+            // taskObject.content = changeCode(content.value);
             taskObject.content = content.value;
-            taskObject.date = date.value;
 
             //对 pid 的处理
             if (currentCateTable === "AllCate") { //如果焦点在所有分类上
@@ -1084,7 +1088,10 @@ function clickSaveOrCancel() {
     addClickEvent($(".cancel-save"), function() {
         console.log("cancel save");
         showScreen2();
-        generateTaskById(currentTaskId);
+        // 判断屏幕宽度是否小于 770
+        if (window.innerWidth >= 770) {
+            generateTaskById(currentTaskId);
+        }
     });
 }
 
@@ -1214,81 +1221,44 @@ function showScreen3() {
  * @return {[type]}               [description]
  */
 function clickBackBtn(currentScreen) {
-    var backBtn = $("#backBtn");
 
-    switch (currentScreen) {
-        case 1:
-            backBtn.style.display = "none";
-            break;
-        case 2:
-            backBtn.style.display = "block";
-            addClickEvent(backBtn, function() {
-                showScreen1();
-            });
-            break;
-        case 3:
-            backBtn.style.display = "block";
-            addClickEvent(backBtn, function() {
-                showScreen2();
-            });
-            break;
-        default:
-            break;
+    // 这里判断是否是手机端
+    if (window.innerWidth < 770) {
+        var backBtn = $("#backBtn");
+
+        switch (currentScreen) {
+            case 1:
+                backBtn.style.display = "none";
+                break;
+            case 2:
+                backBtn.style.display = "block";
+                addClickEvent(backBtn, function() {
+                    showScreen1();
+                });
+                break;
+            case 3:
+                backBtn.style.display = "block";
+                addClickEvent(backBtn, function() {
+                    showScreen2();
+                });
+                break;
+            default:
+                break;
+        }
     }
 }
 
-
-/*[{
-    date: "2015-06-05",
-    tasks: [{
-        "id": 0,
-        "pid": 1,
-        "finish": true,
-        "name": "task1",
-        "content":"百度ife任务1",
-    }, {
-        "id": 1,
-        "pid": 1,
-        "finish": true,
-        "name": "task1",
-        "content":"百度ife任务1",
-    }]
-},{
-    date: "2015-06-06",
-    tasks: [{
-        "id": 2,
-        "pid": 1,
-        "finish": true,
-        "name": "task1",
-        "content":"百度ife任务1",
-    }, {
-        "id": 3,
-        "pid": 1,
-        "finish": true,
-        "name": "task1",
-        "content":"百度ife任务1",
-    }]
-}]*/
-
-/*var taskJson = [{
-    "id": 0,
-    "pid": 1,
-    "finish": true,
-    "name": "task1",
-    "date": "2015-05-10",
-    "content": "百度ife任务1",
-}, {
-    "id": 1,
-    "pid": 1,
-    "finish": false,
-    "name": "Sass",
-    "date": "2015-05-31",
-    "content": "学习慕课网的视频Sass",
-}, {
-    "id": 2,
-    "pid": 1,
-    "finish": false,
-    "name": "AMD",
-    "date": "2015-05-31",
-    "content": "学习AMD",
-}];*/
+/**
+ * 转码 XSS 防护
+ * @param  {String} str 用户输入的字符串
+ * @return {String}     转码后的字符串
+ */
+function changeCode(str) {
+    str = str.replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#x27;")
+              .replace(/\//g, "&#x2f;");
+    return str;
+}
