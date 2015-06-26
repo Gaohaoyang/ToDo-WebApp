@@ -4,7 +4,7 @@
  *
  */
 define(function() {
-    
+
     /**
      * 判断是否为数组
      * @param  {Any}  arr 输入的任意类型
@@ -14,15 +14,25 @@ define(function() {
         return typeof arr === "object" && Object.prototype.toString.call(arr) === "[object Array]";
     };
 
-    // 判断fn是否为一个函数，返回一个bool值
-    function isFunction(fn) {
+    /**
+     * 判断是否为函数
+     * @param  {Any} fn 输入的任意类型
+     * @return {Boolean}     是否为函数
+     */
+    var isFunction = function(fn) {
         return typeof fn === "function";
-    }
+    };
 
-    //--------------------------------------------------
-    // 使用递归来实现一个深度克隆，可以复制一个目标对象，返回一个完整拷贝
-    // 被复制的对象类型会被限制为数字、字符串、布尔、日期、数组、Object对象。不会包含函数、正则对象等
-    function cloneObject(src) {
+    /**
+     * 深度克隆
+     *
+     * 可以复制一个目标对象，返回一个完整拷贝
+     * 被复制的对象类型会被限制为数字、字符串、布尔、日期、数组、Object对象。不会包含函数、正则对象等
+     *
+     * @param  {Object} src 目标对象
+     * @return {Object}     复制对象
+     */
+    var cloneObject = function(src) {
         var o; //result
         if (Object.prototype.toString.call(src) === "[object Array]") {
             o = []; //判断是否是数组，并赋初始值
@@ -39,11 +49,17 @@ define(function() {
             }
         }
         return o;
-    }
+    };
 
-    //--------------------------------------------------------------
-    // 对数组进行去重操作，只考虑数组中元素为数字或字符串，返回一个去重后的数组
-    function uniqArray(arr) {
+    /**
+     * 数组去重
+     *
+     * 只考虑数组中元素为数字或字符串，返回一个去重后的数组
+     *
+     * @param  {Array} arr 目标数组
+     * @return {Array}     去重后的数组
+     */
+    var uniqArray = function(arr) {
         var newArr = []; //创建空数组
         for (var i in arr) { //遍历旧数组
             if (newArr.indexOf(arr[i]) == -1) { //如果新数组中不存在当前元素
@@ -51,14 +67,14 @@ define(function() {
             }
         }
         return newArr;
-    }
+    };
 
-
-    // 中级班同学跳过此题
-    // 实现一个简单的trim函数，用于去除一个字符串，头部和尾部的空白字符
-    // 假定空白字符只有半角空格、Tab
-    // 练习通过循环，以及字符串的一些基本方法，分别扫描字符串str头部和尾部是否有连续的空白字符，并且删掉他们，最后返回一个完成去除的字符串
-    function simpleTrim(str) {
+    /**
+     * 简单 trim
+     * @param  {String} str 目标字符串
+     * @return {String}     去除头尾空白字符的字符串
+     */
+    var simpleTrim = function simpleTrim(str) {
         var i;
         var j;
         for (i = 0; i < str.length; i++) { //从头遍历字符串
@@ -72,22 +88,29 @@ define(function() {
             }
         }
         return str.slice(i, j + 1); //返回子字符串
-    }
+    };
 
-    // 很多同学肯定对于上面的代码看不下去，接下来，我们真正实现一个trim
-    // 对字符串头尾进行空格字符的去除、包括全角半角空格、Tab等，返回一个字符串
-    // 尝试使用一行简洁的正则表达式完成该题目
-    function trim(str) {
+    /**
+     * trim
+     *
+     * 对字符串头尾进行空格字符的去除、包括全角半角空格、Tab等，返回一个字符串
+     *
+     * @param  {String} str 目标字符串
+     * @return {String}     去空白后的字符串
+     */
+    var trim = function(str) {
         if (str.length != -1) {
             return str.replace(/^\s+|\s+$/g, '');
             //匹配开头和结尾的空白字符，并全局匹配
         }
-    }
+    };
 
-    /*
-     * 除去数组中的空元素
+    /**
+     * 去除数组中的空元素
+     * @param  {Array} arr 目标数组
+     * @return {Array}     去空元素后的数组
      */
-    function deleteBlank(arr) {
+    var deleteBlank = function deleteBlank(arr) {
         var arr2 = [];
         for (i = 0; i < arr.length; i++) {
             if (arr[i].match(/\s+/) || arr[i] === "") {
@@ -97,7 +120,7 @@ define(function() {
             }
         }
         return arr2;
-    }
+    };
 
     /**
      * 根据索引删除数组中的元素
@@ -105,52 +128,68 @@ define(function() {
      * @param  {number} index 索引
      * @return {Array}       新的数组
      */
-    function deleteInArray(arr, index) {
+    var deleteInArray = function(arr, index) {
         if (isArray(arr) && index < arr.length) {
             return arr.slice(0, index).concat(arr.slice(index + 1));
         } else {
             console.error("not a arr or index error");
         }
-    }
-    // console.log(deleteInArray());
-    // console.log(deleteInArray(["a","b","c"],0));
-    // 实现一个遍历数组的方法，针对数组中每一个元素执行fn函数，并将数组索引和元素作为参数传递
-    function each(arr, fn) {
+    };
+
+    /**
+     * each
+     *
+     * 实现一个遍历数组的方法，针对数组中每一个元素执行fn函数，并将数组索引和元素作为参数传递
+     *
+     * @param  {Array}   arr 数组
+     * @param  {Function} fn  要执行的方法
+     */
+    var each = function(arr, fn) {
         for (var i in arr) {
             fn(arr[i], i);
         }
-    }
+    };
 
-
-
-    // 获取一个对象里面第一层元素的数量，返回一个整数
-    function getObjectLength(obj) {
+    /**
+     * 获取一个对象里面第一层元素的数量，返回一个整数
+     *
+     * @param  {Object} obj 目标对象
+     * @return {Number}     第一层元素数量
+     */
+    var getObjectLength = function(obj) {
         return Object.keys(obj).length;
-    }
+    };
 
-
-
-    //---------------------------------------------------------
-    // 判断是否为邮箱地址
-    function isEmail(emailStr) {
+    /**
+     * 判断是否为邮箱地址
+     * @param  {String}  emailStr 邮箱地址
+     * @return {Boolean}          是否是邮箱地址
+     */
+    var isEmail = function(emailStr) {
         var pattern = /^(\w+\.)*\w+@\w+(\.\w+)+$/;
         return pattern.test(emailStr);
-    }
+    };
 
-    // 判断是否为手机号
-    function isMobilePhone(phone) {
+    /**
+     * 判断是否为手机号
+     * @param  {String}  phone 手机号字符串
+     * @return {Boolean}       是否是手机号
+     */
+    var isMobilePhone = function(phone) {
         var pattern = /^(\+\d{1,4})?\d{7,11}$/;
         return pattern.test(phone);
-    }
+    };
 
-
-
-    //-----------------------------------------------------------
-    // 为element增加一个样式名为newClassName的新样式
-    function addClass(element, newClassName) {
+    /**
+     * 为element增加一个样式名为newClassName的新样式
+     * 
+     * @param {Element} element      Dom 元素
+     * @param {String} newClassName 样式类名称
+     */
+    var addClass = function(element, newClassName) {
         var oldClassName = element.className; //获取旧的样式类
         element.className = oldClassName === "" ? newClassName : oldClassName + " " + newClassName;
-    }
+    };
 
     // 移除element中的样式oldClassName
     function removeClass(element, oldClassName) {
