@@ -30,6 +30,10 @@ button, select, input, textarea {
 i {
   margin-right: 5px; }
 
+textarea:disabled {
+  color: #000;
+  background: #fff; }
+
 .left, .all-tasks, .cate, .list, .add, .mid, .status, .task-list, .right, .title, .task-date, .content, .cover {
   position: absolute;
   left: 0;

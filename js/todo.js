@@ -4,7 +4,7 @@ var currentCateTable = "AllCate"; //当前分类表
 var currentTaskId = -1; //当前任务 id
 
 initAll();
-
+console.log("DOM.length------>"+document.getElementsByTagName('*').length);
 function initAll() {
     // localStorage.clear();
     initDataBase(); //初始化数据表
@@ -967,7 +967,7 @@ function generateTaskById(taskId) {
 
     $(".todo-name").innerHTML = task.name;
     $(".task-date span").innerHTML = task.date;
-    contentArea.innerHTML = '<textarea class="textarea-content" readonly="readonly"></textarea>';
+    contentArea.innerHTML = '<textarea class="textarea-content" readonly="readonly" disabled="disabled"></textarea>';
     $(".textarea-content").value = task.content;
     // removeClass(contentArea, "content-with-button");
     // addClass(contentArea, "content-no-button");
