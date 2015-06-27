@@ -1,5 +1,8 @@
 /**
- * @file utilAMD.js
+ *
+ * 一些基础的工具方法
+ *
+ * @file util-AMD.js
  * @author Gaohaoyang(gaohaoyang126@126.com)
  *
  */
@@ -74,7 +77,7 @@ define(function() {
      * @param  {String} str 目标字符串
      * @return {String}     去除头尾空白字符的字符串
      */
-    var simpleTrim = function simpleTrim(str) {
+    var simpleTrim = function(str) {
         var i;
         var j;
         for (i = 0; i < str.length; i++) { //从头遍历字符串
@@ -110,7 +113,7 @@ define(function() {
      * @param  {Array} arr 目标数组
      * @return {Array}     去空元素后的数组
      */
-    var deleteBlank = function deleteBlank(arr) {
+    var deleteBlank = function(arr) {
         var arr2 = [];
         for (i = 0; i < arr.length; i++) {
             if (arr[i].match(/\s+/) || arr[i] === "") {
@@ -182,7 +185,7 @@ define(function() {
 
     /**
      * 为element增加一个样式名为newClassName的新样式
-     * 
+     *
      * @param {Element} element      Dom 元素
      * @param {String} newClassName 样式类名称
      */
@@ -191,25 +194,39 @@ define(function() {
         element.className = oldClassName === "" ? newClassName : oldClassName + " " + newClassName;
     };
 
-    // 移除element中的样式oldClassName
-    function removeClass(element, oldClassName) {
+    /**
+     * 移除element中的样式oldClassName
+     * @param  {Element} element      Dom 元素
+     * @param  {String} oldClassName 旧的样式类名
+     */
+    var removeClass = function(element, oldClassName) {
         var originClassName = element.className; //获取原先的样式类
         var pattern = new RegExp("\\b" + oldClassName + "\\b"); //使用构造函数构造动态的正则表达式
         element.className = trim(originClassName.replace(pattern, ''));
-    }
+    };
 
-    // 判断siblingNode和element是否为同一个父元素下的同一级的元素，返回bool值
-    function isSiblingNode(element, siblingNode) {
+    /**
+     * 判断siblingNode和element是否为同一个父元素下的同一级的元素，返回bool值
+     * @param  {Element}  element     Dom 元素
+     * @param  {Element}  siblingNode Dom 元素
+     * @return {Boolean}             是否为同一级元素
+     */
+    var isSiblingNode = function(element, siblingNode) {
         return element.parentNode === siblingNode.parentNode;
-    }
+    };
 
-    // 获取element相对于浏览器窗口的位置，返回一个对象{x, y}
-    function getPosition(element) {
+    /**
+     * 获取element相对于浏览器窗口的位置，返回一个对象{x, y}
+     *
+     * @param  {Element} element Dom 元素
+     * @return {Object}         位置对象
+     */
+    var getPosition = function(element) {
         var pos = {};
         pos.x = element.getBoundingClientRect().left + Math.max(document.documentElement.scrollLeft, document.body.scrollLeft);
         pos.y = element.getBoundingClientRect().top + Math.max(document.documentElement.scrollTop, document.body.scrollTop);
         return pos;
-    }
+    };
 
 
 
@@ -220,7 +237,12 @@ define(function() {
     //2.如果存在tag直接找到所有的tag然后向后查
     //3.样式类，属性，从后向前查，得到它所有的父节点名称，去筛选匹配
     //以上的做法有点太复杂，我还是做一个简单的正向匹配吧。
-    function $(selector) {
+    /**
+     * 简单 Query
+     * @param  {String} selector 选择器名称
+     * @return {Element}          Dom 元素
+     */
+    var $ = function(selector) {
 
         if (!selector) {
             return null;
@@ -250,7 +272,7 @@ define(function() {
         } else { //只有一个，直接查询
             return myQuery(selector, document)[0];
         }
-    }
+    };
 
     /**
      * 针对一个内容查找结果 success
@@ -318,13 +340,20 @@ define(function() {
      * ==================事件=======================
      */
     // 给一个element绑定一个针对event事件的响应，响应函数为listener
-    function addEvent(element, event, listener) {
+
+    /**
+     * 添加事件
+     * @param {Element} element  Dom 元素
+     * @param {String} event    事件名称
+     * @param {Function} listener 执行的函数
+     */
+    var addEvent = function(element, event, listener) {
         if (element.addEventListener) {
             element.addEventListener(event, listener);
         } else if (element.attachEvent) {
             element.attachEvent("on" + event, listener);
         }
-    }
+    };
 
     // 例如：
 
@@ -333,58 +362,86 @@ define(function() {
     // });
 
     // 移除element对象对于event事件发生时执行listener的响应
-    function removeEvent(element, event, listener) {
+    /**
+     * 移除事件
+     * @param  {Element} element  Dom 元素
+     * @param  {String} event    事件名称
+     * @param  {Function} listener 事件
+     */
+    var removeEvent = function(element, event, listener) {
         if (element.removeEventListenr) {
             element.removeEventListenr(event, listener);
         } else if (element.detachEvent) {
             element.detachEvent("on" + event, listener);
         }
-    }
+    };
 
     // 实现对click事件的绑定
-    function addClickEvent(element, listener) {
+    /**
+     * 添加点击事件
+     * @param {Element} element  Dom 元素
+     * @param {Function} listener 事件
+     */
+    var addClickEvent = function(element, listener) {
         addEvent(element, "click", listener);
-    }
+    };
 
     // 实现对于按Enter键时的事件绑定
-    function addEnterEvent(element, listener) {
+    /**
+     * 添加 Enter 事件
+     * @param {Element} element  Dom 元素
+     * @param {Function} listener 事件
+     */
+    var addEnterEvent = function(element, listener) {
         addEvent(element, "keydown", function(event) {
             if (event.keyCode == 13) {
                 listener();
             }
         });
-    }
+    };
 
     // 事件代理
-    function delegateEvent(element, tag, eventName, listener) {
+
+    /**
+     * 事件代理
+     * @param  {Element} element   Dom 元素
+     * @param  {String} tag       标签名
+     * @param  {String} eventName 事件名称
+     * @param  {Function} listener  事件
+     */
+    var delegateEvent = function(element, tag, eventName, listener) {
         addEvent(element, eventName, function(event) {
             var target = event.target || event.srcElement;
             if (target.tagName.toLowerCase() == tag.toLowerCase()) {
                 listener.call(target, event);
             }
         });
-    }
+    };
 
     // 估计有同学已经开始吐槽了，函数里面一堆$看着晕啊，那么接下来把我们的事件函数做如下封装改变：
 
-    $.on = function(selector, event, listener) {
-        addEvent($(selector), event, listener);
-    };
-    $.click = function(selector, listener) {
-        addClickEvent($(selector), listener);
-    };
-    $.un = function(selector, event, listener) {
-        removeEvent($(selector), event, listener);
-    };
-    $.delegate = function(selector, tag, event, listener) {
-        delegateEvent($(selector), tag, event, listener);
-    };
+    // $.on = function(selector, event, listener) {
+    //     addEvent($(selector), event, listener);
+    // };
+    // $.click = function(selector, listener) {
+    //     addClickEvent($(selector), listener);
+    // };
+    // $.un = function(selector, event, listener) {
+    //     removeEvent($(selector), event, listener);
+    // };
+    // $.delegate = function(selector, tag, event, listener) {
+    //     delegateEvent($(selector), tag, event, listener);
+    // };
 
 
     // ---------5 BOM-------
 
     // 判断是否为IE浏览器，返回-1或者版本号
-    function isIE() {
+    /**
+     * 是否是 IE
+     * @return {Boolean} 是否是 IE
+     */
+    var isIE = function() {
         var s = navigator.userAgent.toLowerCase();
         console.log(s);
         //ie10的信息：
@@ -397,19 +454,30 @@ define(function() {
         } else {
             return -1;
         }
-    }
+    };
 
     // 设置cookie
-    function setCookie(cookieName, cookieValue, expiredays) {
+    /**
+     * 设置 cookie
+     * @param {String} cookieName  名称
+     * @param {String} cookieValue 值
+     * @param {Number} expiredays  过期时间
+     */
+    var setCookie = function(cookieName, cookieValue, expiredays) {
         var cookie = cookieName + "=" + encodeURIComponent(cookieValue);
         if (typeof expiredays === "number") {
             cookie += ";max-age=" + (expiredays * 60 * 60 * 24);
         }
         document.cookie = cookie;
-    }
+    };
 
     // 获取cookie值
-    function getCookie(cookieName) {
+    /**
+     * 获取 cookie
+     * @param  {String} cookieName 名称
+     * @return {Object}            cookie 对象
+     */
+    var getCookie = function(cookieName) {
         var cookie = {};
         var all = document.cookie;
         if (all === "") {
@@ -424,11 +492,17 @@ define(function() {
             cookie[name] = value;
         }
         return cookie;
-    }
+    };
 
     //-------------Ajax---------------
     // 学习Ajax，并尝试自己封装一个Ajax方法。实现如下方法：
-    function ajax(url, options) {
+    /**
+     * 封装 Ajax
+     * @param  {String} url     地址
+     * @param  {Object} options 选项对象
+     * @return {[type]}         [description]
+     */
+    var ajax = function(url, options) {
 
         var dataResult; //结果data
 
@@ -470,7 +544,7 @@ define(function() {
                 }
             }
         };
-    }
+    };
 
     // 使用示例：
     // ajax(
@@ -484,4 +558,49 @@ define(function() {
     //         }
     //     }
     // );　
+
+    /**
+     * 转码 XSS 防护
+     * @param  {String} str 用户输入的字符串
+     * @return {String}     转码后的字符串
+     */
+    var changeCode = function(str) {
+        str = str.replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#x27;")
+            .replace(/\//g, "&#x2f;");
+        return str;
+    };
+
+    return {
+        isArray: isArray,
+        isFunction: isFunction,
+        cloneObject: cloneObject,
+        uniqArray: uniqArray,
+        simpleTrim: simpleTrim,
+        trim: trim,
+        deleteBlank: deleteBlank,
+        deleteInArray: deleteInArray,
+        each: each,
+        getObjectLength: getObjectLength,
+        isEmail: isEmail,
+        isMobilePhone: isMobilePhone,
+        addClass: addClass,
+        removeClass: removeClass,
+        isSiblingNode: isSiblingNode,
+        getPosition: getPosition,
+        $: $,
+        addEvent: addEvent,
+        removeEvent: removeEvent,
+        addClickEvent: addClickEvent,
+        addEnterEvent: addEnterEvent,
+        delegateEvent: delegateEvent,
+        isIE: isIE,
+        setCookie: setCookie,
+        getCookie: getCookie,
+        ajax: ajax,
+        changeCode: changeCode
+    };
 });
