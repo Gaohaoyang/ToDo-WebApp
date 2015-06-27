@@ -20,18 +20,18 @@
  *
  * 分类表 cate
  * ----------------------
- * id* | name | child(fk)
+ * id* | name | child(FK)
  * ----------------------
  *
  * 子分类表 childCate
- * ----------------------------
- * id* | pid | name | child(fk)
- * ----------------------------
+ * --------------------------------
+ * id* | pid(FK) | name | child(FK)
+ * --------------------------------
  *
  * 任务表 task
- * ------------------------------------------
- * id* | pid | finish | name | date | content
- * ------------------------------------------
+ * ----------------------------------------------
+ * id* | pid(FK) | finish | name | date | content
+ * ----------------------------------------------
  */
 
 define(['util-AMD'], function(_) {
@@ -549,8 +549,10 @@ define(['util-AMD'], function(_) {
     };
 
     return {
+        // 初始化数据库
         initDataBase: initDataBase,
-        
+
+        // 查询
         queryCates: queryCates,
         queryCateById: queryCateById,
         queryTasksLengthByCateId: queryTasksLengthByCateId,
@@ -564,20 +566,24 @@ define(['util-AMD'], function(_) {
         queryTasksByChildCateId: queryTasksByChildCateId,
         queryTasksByCateId: queryTasksByCateId,
 
+        // 增加
         addCate: addCate,
         addChildCate: addChildCate,
         addTask: addTask,
 
+        // 修改
         updateCateChildByAdd: updateCateChildByAdd,
         updateCateChildByDelete: updateCateChildByDelete,
         updateChildCateChildByAdd: updateChildCateChildByAdd,
         updateTaskStatusById: updateTaskStatusById,
         updateTaskById: updateTaskById,
 
+        // 删除
         deleteCate: deleteCate,
         deleteChildCate: deleteChildCate,
         deleteTaskById: deleteTaskById,
 
+        // 打印数据库
         listAllStorage: listAllStorage
     };
 });
