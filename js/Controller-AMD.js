@@ -47,21 +47,21 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
 
             if (cate[i].child.length === 0) {
                 // if (i === 0) {
-                //     liStr = '<li><h2 cateid=' + cate[i].id + ' onclick="clickCate(this)"><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')</h2></li>';
+                //     liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')</h2></li>';
                 // } else {
-                liStr = '<li><h2 cateid=' + cate[i].id + ' onclick="clickCate(this)"><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h2></li>';
+                liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h2></li>';
                 // }
             } else {
                 if (i === 0) {
                     // var childCateDefault = DAO.queryChildCatesById(0);
-                    // liStr = '<li><h2 cateid=' + cate[i].id + ' onclick="clickCate(this)"><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')</h2><ul><li><h3 cateid=' + childCateArr[j].id + ' onclick="clickCate(this)"><i class="fa fa-file-o"></i><span>' + childCateDefault.name + '</span> (' + childCateDefault.length + ')</h3></li>';
-                    liStr = '<li><h2 cateid=0 onclick="clickCate(this)"><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')</h2><ul><li><h3 cateid=0 onclick="clickCate(this)"><i class="fa fa-file-o"></i><span>' + defaultChildCate.name + '</span> (' + defaultChildCate.child.length + ')</h3></li>';
+                    // liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')</h2><ul><li><h3 cateid=' + childCateArr[j].id + '><i class="fa fa-file-o"></i><span>' + childCateDefault.name + '</span> (' + childCateDefault.length + ')</h3></li>';
+                    liStr = '<li><h2 cateid=0><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')</h2><ul><li><h3 cateid=0><i class="fa fa-file-o"></i><span>' + defaultChildCate.name + '</span> (' + defaultChildCate.child.length + ')</h3></li>';
                 } else {
-                    liStr = '<li><h2 cateid=' + cate[i].id + ' onclick="clickCate(this)"><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h2><ul>';
+                    liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h2><ul>';
                     var childCateArr = DAO.queryChildCatesByIdArray(cate[i].child);
                     for (var j = 0; j < childCateArr.length; j++) {
                         var innerLiStr = "";
-                        innerLiStr = '<li><h3 cateid=' + childCateArr[j].id + ' onclick="clickCate(this)"><i class="fa fa-file-o"></i><span>' + childCateArr[j].name + '</span> (' + childCateArr[j].child.length + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h3></li>';
+                        innerLiStr = '<li><h3 cateid=' + childCateArr[j].id + '><i class="fa fa-file-o"></i><span>' + childCateArr[j].name + '</span> (' + childCateArr[j].child.length + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h3></li>';
                         liStr += innerLiStr;
                     }
                     liStr += '</ul></li>';
@@ -70,10 +70,32 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
             tempStr += liStr;
         }
         tempStr += '</ul>';
+
+        var listContentArea = _.$("#listcontent");
+        
         //写入列表内容区
-        _.$("#listcontent").innerHTML = tempStr;
+        listContentArea.innerHTML = tempStr;
+        
         //设置所有任务个数
         _.$(".list-title span").innerHTML = DAO.queryAllTasks().length;
+
+        // 事件代理 绑定事件
+        _.delegateEvent(listContentArea,"h2","click",function() {
+            console.log("事件代理");
+            console.log(this);
+            clickCate();
+        });
+        _.delegateEvent(listContentArea,"h3","click",function() {
+            clickCate(this);
+        });
+        
+        // 所有分类绑定事件
+        _.addClickEvent(_.$("#allTasks"),function() {
+            clickCate(this);
+        });
+
+        // 对删除绑定事件
+        
     };
 
     /**
@@ -161,6 +183,10 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
         }
         initModal();
     };
+
+    // var bindClickCate = function() {
+
+    // };
 
     /**
      * 点击分类

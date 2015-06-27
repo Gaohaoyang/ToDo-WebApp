@@ -280,7 +280,7 @@ define(function() {
      * @param  {Element} root    根节点元素
      * @return {NodeList数组}    节点列表，可能是多个节点也可能是一个
      */
-    function myQuery(selector, root) {
+    var myQuery = function(selector, root) {
         var signal = selector[0]; //
         var allChildren = null;
         var content = selector.substr(1);
@@ -334,7 +334,7 @@ define(function() {
                 break;
         }
         return result;
-    }
+    };
 
     /**
      * ==================事件=======================
@@ -410,9 +410,10 @@ define(function() {
      * @param  {Function} listener  事件
      */
     var delegateEvent = function(element, tag, eventName, listener) {
-        addEvent(element, eventName, function(event) {
+        addEvent(element, eventName, function(e) {
+            var event = e || window.event;
             var target = event.target || event.srcElement;
-            if (target.tagName.toLowerCase() == tag.toLowerCase()) {
+            if (target && target.tagName.toLowerCase() == tag.toLowerCase()) {
                 listener.call(target, event);
             }
         });
@@ -592,6 +593,7 @@ define(function() {
         isSiblingNode: isSiblingNode,
         getPosition: getPosition,
         $: $,
+        myQuery: myQuery,
         addEvent: addEvent,
         removeEvent: removeEvent,
         addClickEvent: addClickEvent,
