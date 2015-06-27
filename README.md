@@ -59,7 +59,7 @@
 
 * 模块化
     
-    使用 requireJS 模块化 JavaScript 代码。重构 JavaScript 代码
+    使用 requireJS 模块化 JavaScript 代码。重构 JavaScript 代码。优化之前写的耦合性高的绑定事件，重新绑定事件，降低耦合性。
 
 
 
