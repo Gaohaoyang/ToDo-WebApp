@@ -7,7 +7,7 @@
 * [任务四要求](https://github.com/baidu-ife/ife/tree/master/task/task0004)
 * [源代码](https://github.com/Gaohaoyang/ToDo-WebApp)
 * [在线 demo](http://gaohaoyang.github.io/ToDo-WebApp/)
-* 手机查看 二维码
+* 手机查看 ↓ 二维码 ↓
     
     ![todoWebApp](http://7q5cdt.com1.z0.glb.clouddn.com/task4-code-todoWebApp.png)
 
