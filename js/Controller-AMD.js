@@ -25,9 +25,11 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
         // localStorage.clear();
         initCates(); //初始化分类
         initModal(); //初始化模态框
-        _.$("#task-list").innerHTML = createTaskList(DAO.queryAllTasks()); //初始化任务列表
+
+        var taskList = _.$("#task-list");
+        taskList.innerHTML = createTaskList(DAO.queryAllTasks()); //初始化任务列表
         cateTaskStatusController(); //任务状态分类
-        generateTaskById(-1); //初始化任务详细
+        generateTaskById(taskList.getElementsByTagName("li")[0].getAttribute("taskid")); //初始化任务详细
         _.addClass(_.$("[taskid]"), "active"); //将第一个有 taskid 属性的元素高亮
         DAO.listAllStorage();
 
@@ -44,6 +46,7 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
         // 所有分类绑定事件
         _.addClickEvent(_.$("#allTasks"), function() {
             clickCate(this);
+            generateTaskById(taskList.getElementsByTagName("li")[0].getAttribute("taskid"));
         });
 
         // 对删除绑定事件
@@ -236,16 +239,34 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
         } else { //点击在主分类或子分类上
             if (element.tagName.toLowerCase() == "h2") {
                 console.log("main cate--->" + cateId);
-                taskList.innerHTML = createTaskList(DAO.queryTasksByCateId(cateId));
+                
+                var innerHTMLString = createTaskList(DAO.queryTasksByCateId(cateId));
+                taskList.innerHTML = innerHTMLString;
                 currentCateId = cateId;
                 currentCateTable = "cate";
+
+                if (innerHTMLString==="") {
+                    generateTaskById(-2);
+                } else{
+                    generateTaskById(currentTaskId);
+                }
+
             } else {
                 console.log("childCate--->" + cateId);
                 //子分类
                 console.log(DAO.queryTasksByChildCateId(cateId));
-                taskList.innerHTML = createTaskList(DAO.queryTasksByChildCateId(cateId));
+
+                var innerHTMLString2 = createTaskList(DAO.queryTasksByChildCateId(cateId));
+                taskList.innerHTML = innerHTMLString2;
+
                 currentCateId = cateId;
                 currentCateTable = "childCate";
+
+                 if (innerHTMLString2==="") {
+                    generateTaskById(-2);
+                } else{
+                    generateTaskById(currentTaskId);
+                }
             }
         }
 
@@ -256,7 +277,7 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
             _.addClass(_.$("[taskid]"), "active"); //将第一个有 taskid 属性的元素高亮
         }
 
-        generateTaskById(currentTaskId);
+        
 
         showScreen2();
     };
@@ -347,7 +368,7 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
         console.log(taskArr);
 
         //对日期排序
-        dateArr = dateArr.sort();
+        dateArr = dateArr.sort().reverse();
 
         //根据时间查找任务对象
         for (var j = 0; j < dateArr.length; j++) {
@@ -439,34 +460,47 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
      * @return {[type]}        [description]
      */
     var generateTaskById = function(taskId) {
-        var task = DAO.queryTaskById(taskId);
-        var contentArea = _.$(".content");
 
-        _.$(".todo-name").innerHTML = task.name;
-        _.$(".task-date span").innerHTML = task.date;
-        contentArea.innerHTML = '<textarea class="textarea-content" readonly="readonly" disabled="disabled"></textarea>';
-        _.$(".textarea-content").value = task.content;
-        // _.removeClass(contentArea, "content-with-button");
-        // _.addClass(contentArea, "content-no-button");
-        contentArea.setAttribute("class", "content content-no-button");
-
-        _.$(".button-area").style.display = "none";
-
+        var todoName = _.$(".todo-name");
+        var taskDateSpan = _.$(".task-date span");
+        var textareaContent = _.$(".textarea-content");
         var manipulate = _.$(".manipulate");
-        if (task.finish) { //若已完成
-            manipulate.innerHTML = "";
-        } else { //未完成
-            manipulate.innerHTML = '<a id="checkTaskDone"><i class="fa fa-check-square-o"></i></a><a id="changeTask"><i class="fa fa-pencil-square-o"></i></a>';
 
-            // -----------------------任务详情区-----------------------
-            // 点击任务完成
-            _.addClickEvent(_.$("#checkTaskDone"), function() {
-                checkTaskDone();
-            });
-            // 点击编辑任务
-            _.addClickEvent(_.$("#changeTask"), function() {
-                changeTask();
-            });
+        textareaContent.setAttribute("readonly","readonly");
+        textareaContent.setAttribute("disabled","disabled");
+
+        if (taskId===-2) {
+            console.log("-----2-2-2-2-2-2-2-2-2-2-2--2-2-2-2-2--2-2-2-2-2-2-2-");
+            todoName.innerHTML = "无";
+            taskDateSpan.innerHTML = "无";
+            textareaContent.value = "无";
+            manipulate.innerHTML = "";
+        } else{
+            var task = DAO.queryTaskById(taskId);
+            var contentArea = _.$(".content");
+
+            todoName.innerHTML = task.name;
+            taskDateSpan.innerHTML = task.date;
+            textareaContent.value = task.content;
+            contentArea.setAttribute("class", "content content-no-button");
+
+            _.$(".button-area").style.display = "none";
+
+            if (task.finish) { //若已完成
+                manipulate.innerHTML = "";
+            } else { //未完成
+                manipulate.innerHTML = '<a id="checkTaskDone"><i class="fa fa-check-square-o"></i></a><a id="changeTask"><i class="fa fa-pencil-square-o"></i></a>';
+
+                // -----------------------任务详情区-----------------------
+                // 点击任务完成
+                _.addClickEvent(_.$("#checkTaskDone"), function() {
+                    checkTaskDone();
+                });
+                // 点击编辑任务
+                _.addClickEvent(_.$("#changeTask"), function() {
+                    changeTask();
+                });
+            }
         }
     };
 
