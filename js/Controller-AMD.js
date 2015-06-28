@@ -23,7 +23,6 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
      */
     var initAll = function() {
         // localStorage.clear();
-        DAO.initDataBase(); //初始化数据表
         initCates(); //初始化分类
         initModal(); //初始化模态框
         _.$("#task-list").innerHTML = createTaskList(DAO.queryAllTasks()); //初始化任务列表
@@ -31,6 +30,53 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
         generateTaskById(-1); //初始化任务详细
         _.addClass(_.$("[taskid]"), "active"); //将第一个有 taskid 属性的元素高亮
         DAO.listAllStorage();
+
+        // ---------------------分类列表区的监听------------
+        var listContentArea = _.$("#listcontent");
+        // 事件代理 绑定事件
+        _.delegateEventBubbleOnce(listContentArea, "h2", "click", function() {
+            clickCate(this);
+        });
+        _.delegateEventBubbleOnce(listContentArea, "h3", "click", function() {
+            clickCate(this);
+        });
+
+        // 所有分类绑定事件
+        _.addClickEvent(_.$("#allTasks"), function() {
+            clickCate(this);
+        });
+
+        // 对删除绑定事件
+        _.delegateEventTrash(listContentArea, "i", "click", "fa fa-trash-o", function() {
+            del(event, this);
+        });
+
+        // 给新建分类绑定监听
+        _.addClickEvent(_.$("#addCate"), function() {
+            clickAddCate();
+        });
+
+        //------------------------------modal------------------------
+        // 确认按钮绑定事件
+        _.addClickEvent(_.$("#ok-modal"), function() {
+            ok();
+        });
+
+        // 取消按钮绑定事件
+        _.addClickEvent(_.$("#cancel-modal"), function() {
+            cancel();
+        });
+
+        // -----------------------任务列表区-----------------------
+        // 点击到任务条目上
+        _.delegateEventBubbleOnce(_.$("#task-list"), "li", "click", function() {
+            clickTask(this);
+        });
+
+        // 新建任务
+        _.addClickEvent(_.$("#add-task"), function() {
+            clickAddTask();
+        });
     };
 
     /**
@@ -49,7 +95,7 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
                 // if (i === 0) {
                 //     liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')</h2></li>';
                 // } else {
-                liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h2></li>';
+                liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')<i class="fa fa-trash-o"></i></h2></li>';
                 // }
             } else {
                 if (i === 0) {
@@ -57,11 +103,11 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
                     // liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')</h2><ul><li><h3 cateid=' + childCateArr[j].id + '><i class="fa fa-file-o"></i><span>' + childCateDefault.name + '</span> (' + childCateDefault.length + ')</h3></li>';
                     liStr = '<li><h2 cateid=0><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')</h2><ul><li><h3 cateid=0><i class="fa fa-file-o"></i><span>' + defaultChildCate.name + '</span> (' + defaultChildCate.child.length + ')</h3></li>';
                 } else {
-                    liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h2><ul>';
+                    liStr = '<li><h2 cateid=' + cate[i].id + '><i class="fa fa-folder-open"></i><span>' + cate[i].name + '</span> (' + DAO.queryTasksLengthByCate(cate[i]) + ')<i class="fa fa-trash-o"></i></h2><ul>';
                     var childCateArr = DAO.queryChildCatesByIdArray(cate[i].child);
                     for (var j = 0; j < childCateArr.length; j++) {
                         var innerLiStr = "";
-                        innerLiStr = '<li><h3 cateid=' + childCateArr[j].id + '><i class="fa fa-file-o"></i><span>' + childCateArr[j].name + '</span> (' + childCateArr[j].child.length + ')<i class="fa fa-trash-o" onclick="del(event,this)"></i></h3></li>';
+                        innerLiStr = '<li><h3 cateid=' + childCateArr[j].id + '><i class="fa fa-file-o"></i><span>' + childCateArr[j].name + '</span> (' + childCateArr[j].child.length + ')<i class="fa fa-trash-o"></i></h3></li>';
                         liStr += innerLiStr;
                     }
                     liStr += '</ul></li>';
@@ -72,30 +118,12 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
         tempStr += '</ul>';
 
         var listContentArea = _.$("#listcontent");
-        
+
         //写入列表内容区
         listContentArea.innerHTML = tempStr;
-        
+
         //设置所有任务个数
         _.$(".list-title span").innerHTML = DAO.queryAllTasks().length;
-
-        // 事件代理 绑定事件
-        _.delegateEvent(listContentArea,"h2","click",function() {
-            console.log("事件代理");
-            console.log(this);
-            clickCate();
-        });
-        _.delegateEvent(listContentArea,"h3","click",function() {
-            clickCate(this);
-        });
-        
-        // 所有分类绑定事件
-        _.addClickEvent(_.$("#allTasks"),function() {
-            clickCate(this);
-        });
-
-        // 对删除绑定事件
-        
     };
 
     /**
@@ -278,12 +306,12 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
                 for (var j = 0; j < dateTasksArr[i].tasks.length; j++) {
                     var finishOrNotStr = "";
                     if (dateTasksArr[i].tasks[j].finish) {
-                        finishOrNotStr = '<li class="task-done" taskid="' + dateTasksArr[i].tasks[j].id + '" onclick="clickTask(this)"><i class="fa fa-check"></i> ' + dateTasksArr[i].tasks[j].name + '</li>';
+                        finishOrNotStr = '<li class="task-done" taskid="' + dateTasksArr[i].tasks[j].id + '"><i class="fa fa-check"></i> ' + dateTasksArr[i].tasks[j].name + '</li>';
                     } else {
-                        finishOrNotStr = '<li taskid="' + dateTasksArr[i].tasks[j].id + '" onclick="clickTask(this)">' + dateTasksArr[i].tasks[j].name + '</li>';
+                        finishOrNotStr = '<li taskid="' + dateTasksArr[i].tasks[j].id + '">' + dateTasksArr[i].tasks[j].name + '</li>';
                     }
 
-                    // innerLiStr += '<li taskid="' + dateTasksArr[i].tasks[j].id + '" onclick="clickTask(this)">' + dateTasksArr[i].tasks[j].name + '</li>';
+                    // innerLiStr += '<li taskid="' + dateTasksArr[i].tasks[j].id + '">' + dateTasksArr[i].tasks[j].name + '</li>';
                     innerLiStr += finishOrNotStr;
                 }
                 innerLiStr += "</ul>";
@@ -428,7 +456,17 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
         if (task.finish) { //若已完成
             manipulate.innerHTML = "";
         } else { //未完成
-            manipulate.innerHTML = '<a onclick="checkTaskDone()"><i class="fa fa-check-square-o"></i></a><a onclick="changeTask()"><i class="fa fa-pencil-square-o"></i></a>';
+            manipulate.innerHTML = '<a id="checkTaskDone"><i class="fa fa-check-square-o"></i></a><a id="changeTask"><i class="fa fa-pencil-square-o"></i></a>';
+
+            // -----------------------任务详情区-----------------------
+            // 点击任务完成
+            _.addClickEvent(_.$("#checkTaskDone"), function() {
+                checkTaskDone();
+            });
+            // 点击编辑任务
+            _.addClickEvent(_.$("#changeTask"), function() {
+                changeTask();
+            });
         }
     };
 
@@ -698,6 +736,6 @@ define(['util-AMD', 'DAO-AMD'], function(_, DAO) {
     };
 
     return {
-        initAll:initAll
+        initAll: initAll
     };
 });

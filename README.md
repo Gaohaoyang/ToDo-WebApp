@@ -5,11 +5,16 @@
 ## ToDo WebApp Version
 
 * [任务四要求](https://github.com/baidu-ife/ife/tree/master/task/task0004)
+
 * [源代码](https://github.com/Gaohaoyang/ToDo-WebApp)
+
 * [在线 demo](http://gaohaoyang.github.io/ToDo-WebApp/)
+
 * 手机查看 ↓ 二维码 ↓
     
     ![todoWebApp](http://7q5cdt.com1.z0.glb.clouddn.com/task4-code-todoWebApp.png)
+
+* [我的博客 HyG](http://gaohaoyang.github.io)
 
 ## Details
 
@@ -61,8 +66,7 @@
     
     使用 requireJS 模块化 JavaScript 代码。重构 JavaScript 代码。优化之前写的耦合性高的绑定事件，重新绑定事件，降低耦合性。
 
-
-
-要加油了，还有一点处理没有做完！
-
+* 前端工程化
+    
+    暂时做到这里，下一步，使用 gulp 压缩代码，作为工程发布。
 

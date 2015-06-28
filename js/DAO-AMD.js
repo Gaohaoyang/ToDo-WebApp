@@ -40,9 +40,10 @@ define(['util-AMD'], function(_) {
      * 初始化数据
      * @return {[type]} [description]
      */
-    var initDataBase = function() {
+    var initDataBase = (function() {
+        console.log("立即执行函数");
         if (!localStorage.cate || !localStorage.childCate || !localStorage.task) {
-
+            console.log("初始化数据库");
             var cateJson = [{
                 "id": 0,
                 "name": "默认分类",
@@ -70,7 +71,7 @@ define(['util-AMD'], function(_) {
             localStorage.childCate = JSON.stringify(childCateJson);
             localStorage.task = JSON.stringify(taskJson);
         }
-    };
+    })();
 
     // *********query*************
     /**
@@ -152,7 +153,7 @@ define(['util-AMD'], function(_) {
             }
         }
     };
-    console.log(queryChildCatesById(0));
+    // console.log(queryChildCatesById(0));
     // console.log("queryChildCatesById----->" + queryChildCatesById(0));
     // console.log(queryChildCatesById(0));
 

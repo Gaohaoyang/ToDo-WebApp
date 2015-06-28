@@ -400,8 +400,6 @@ define(function() {
         });
     };
 
-    // 事件代理
-
     /**
      * 事件代理
      * @param  {Element} element   Dom 元素
@@ -412,8 +410,55 @@ define(function() {
     var delegateEvent = function(element, tag, eventName, listener) {
         addEvent(element, eventName, function(e) {
             var event = e || window.event;
-            var target = event.target || event.srcElement;
+            var target = event.target || event.srcElement; //兼容 IE 与标准浏览器
             if (target && target.tagName.toLowerCase() == tag.toLowerCase()) {
+                listener.call(target, event);
+            }
+        });
+    };
+
+    /**
+     * 事件代理2
+     *
+     * 向上查找一次
+     *
+     * @param  {Element} element   Dom 元素
+     * @param  {String} tag       标签名
+     * @param  {String} eventName 事件名称
+     * @param  {Function} listener  事件
+     */
+    var delegateEventBubbleOnce = function(element, tag, eventName, listener) {
+        addEvent(element, eventName, function(e) {
+            var event = e || window.event;
+            var target = event.target || event.srcElement; //兼容 IE 与标准浏览器
+            if (target && target.tagName.toLowerCase() == tag.toLowerCase()) {
+                listener.call(target, event);
+            } else if (target.parentNode && target.parentNode.tagName.toLowerCase() == tag.toLowerCase()) {
+
+                // 排除点击到垃圾桶图标
+                if (target.getAttribute("class") !== "fa fa-trash-o") {
+                    listener.call(target.parentNode, event);
+                }
+            }
+        });
+    };
+
+    /**
+     * 事件代理3
+     *
+     * 点击垃圾桶图标
+     *
+     * @param  {Element} element   Dom 元素
+     * @param  {String} tag       标签名
+     * @param  {String} eventName 事件名称
+     * @param  {String} className 样式类名称
+     * @param  {Function} listener  事件
+     */
+    var delegateEventTrash = function(element, tag, eventName, className, listener) {
+        addEvent(element, eventName, function(e) {
+            var event = e || window.event;
+            var target = event.target || event.srcElement; //兼容 IE 与标准浏览器
+            if (target && target.tagName.toLowerCase() == tag.toLowerCase() && target.getAttribute("class") === className) {
                 listener.call(target, event);
             }
         });
@@ -582,23 +627,31 @@ define(function() {
         uniqArray: uniqArray,
         simpleTrim: simpleTrim,
         trim: trim,
+
         deleteBlank: deleteBlank,
         deleteInArray: deleteInArray,
+
         each: each,
         getObjectLength: getObjectLength,
         isEmail: isEmail,
         isMobilePhone: isMobilePhone,
+
         addClass: addClass,
         removeClass: removeClass,
         isSiblingNode: isSiblingNode,
         getPosition: getPosition,
+
         $: $,
         myQuery: myQuery,
+
         addEvent: addEvent,
         removeEvent: removeEvent,
         addClickEvent: addClickEvent,
         addEnterEvent: addEnterEvent,
         delegateEvent: delegateEvent,
+        delegateEventBubbleOnce: delegateEventBubbleOnce,
+        delegateEventTrash: delegateEventTrash,
+
         isIE: isIE,
         setCookie: setCookie,
         getCookie: getCookie,
