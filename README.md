@@ -5,11 +5,8 @@
 ## ToDo WebApp Version
 
 * [任务四要求](https://github.com/baidu-ife/ife/tree/master/task/task0004)
-
 * [源代码](https://github.com/Gaohaoyang/ToDo-WebApp)
-
 * [在线 demo](http://gaohaoyang.github.io/ToDo-WebApp/)
-
 * 手机查看 ↓ 二维码 ↓
     
     ![todoWebApp](http://7q5cdt.com1.z0.glb.clouddn.com/task4-code-todoWebApp.png)
@@ -18,7 +15,7 @@
 
 ## Details
 
-* 数据存储
+* **数据存储**
 
     以 JSON 模拟数据表的形式存储于 LocalStorage 中
 
@@ -42,31 +39,31 @@
          id* | pid(FK) | finish | name | date | content
          ----------------------------------------------
 
-* 使用 Sass 重构了 CSS 代码
+* **使用 `Sass` 重构了 CSS 代码**
     
     使用分块、继承等方式，使得代码更加清晰明了。
 
-* 响应式布局
+* **响应式布局**
     
     针对手机端细节做了很多调整，更符合手机上的视觉交互习惯。
 
-* 加入页面切换效果
+* **加入页面切换效果**
     
     使用 `translate3d()`，纯 CSS3 切换动画效果。
 
-* 处理了 XSS 防护
+* **处理了 XSS 防护**
     
     对可能造成破坏的字符进行转码。
 
-* 性能优化
+* **性能优化**
     
     使用 CDN 处理静态资源 fontAwesome，压缩静态资源等
 
-* 模块化
+* **模块化**
     
     使用 requireJS 模块化 JavaScript 代码。重构 JavaScript 代码。优化之前写的耦合性高的绑定事件，重新绑定事件，降低耦合性。
 
-* 前端工程化
+* **前端工程化**
     
     暂时做到这里，下一步，使用 gulp 压缩代码，作为工程发布。
 
