@@ -1,0 +1,1 @@
+console.log("hello requireJS"),require(["Controller-AMD"],function(l){l.initAll()});

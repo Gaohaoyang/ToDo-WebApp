@@ -1,6 +1,8 @@
 var gulp = require("gulp");
 var sass = require('gulp-ruby-sass');
 var minifyCss = require('gulp-minify-css');
+var jshint = require('gulp-jshint');
+var uglify = require('gulp-uglify');
 
 // 配置 Sass 编译
 gulp.task('sass', function() {
@@ -26,11 +28,21 @@ gulp.task('minify-css', function() {
 });
 
 // 压缩 JavaScript
-// gulp.task
+gulp.task('js', function () {
+   return gulp.src(['src/js/**/*.js','!src/js/**/*.min.js'])
+      .pipe(jshint())
+      .pipe(jshint.reporter('default'))
+      .pipe(uglify())
+      .pipe(gulp.dest('dist/js'));
+});
 
 // 监控 CSS 和 JavaScript
 gulp.task('watchCssJavaScript',function() {
     gulp.watch('src/css/**/*.css',['minify-css']);
+    gulp.watch(['src/js/**/*.js','!src/js/**/*.min.js'],['js']);
 });
 
-// gulp.task('default',['minify-css','watchCssJavaScript']);
+// 自动压缩 CSS JavaScript
+gulp.task('acj',['minify-css','js','watchCssJavaScript']);
+
+gulp.task('default',['asb','acj']);
