@@ -29,7 +29,7 @@
         </div>
         <div class="main">
             <div class="left page-active">
-                <div id="allTasks" cateid="-1" class="list-title all-tasks active" onclick="clickCate(this)">
+                <div id="allTasks" cateid="-1" class="list-title all-tasks active">
                     <i class="fa fa-globe"></i> 所有任务 (<span>1</span>)
                 </div>
                 <div class="cate"><i class="fa fa-list-ul"></i> 分类列表</div>
@@ -50,7 +50,7 @@
                         <li><h2><i class="fa fa-folder-open"></i><span>默认分类</span> (0)<i class="fa fa-trash-o"></i></h2></li>
                     </ul> -->
                 </div>
-                <button class="add" onclick="clickAddCate()"><i class="fa fa-plus"></i>新增分类</button>
+                <button id="addCate" class="add"><i class="fa fa-plus"></i>新增分类</button>
             </div>
             <div class="mid page-next">
                 <div class="status">
@@ -70,7 +70,7 @@
                         <li>todo-2</li>
                     </ul> -->
                 </div>
-                <button class="add-task add" onclick="clickAddTask()"><i class="fa fa-plus"></i>新增任务</button>
+                <button id="add-task" class="add-task add"><i class="fa fa-plus"></i>新增任务</button>
             </div>
             <div class="right">
                 <div class="title">
@@ -115,13 +115,14 @@
                     新分类名称：<input id="newCateName" type="text">
                 </div>
                 <div class="modal-foot">
-                    <button onclick="cancel()">取消</button>
-                    <button onclick="ok()">确认</button>
+                    <button id="cancel-modal">取消</button>
+                    <button id="ok-modal">确认</button>
                 </div>
             </div>
         </div>
-        <script src="js/util.js"></script>
-        <script src="js/todo.js"></script>
+        <script src="js/require.min.js" data-main="js/main"></script>
+        <!-- <script src="js/util.js"></script>
+        <script src="js/todo.js"></script> -->
         <!-- <script src="http://202.117.15.46:8081/target/target-script-min.js#anonymous"></script> -->
     </body>
 </html>
