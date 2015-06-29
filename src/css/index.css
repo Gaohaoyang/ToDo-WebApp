@@ -62,15 +62,15 @@ textarea:disabled {
   -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   z-index: 10; }
-.header div {
-  display: none; }
-.header h1 {
-  font-size: 2.4rem;
-  color: #fff;
-  line-height: 60px;
-  margin-left: 15px; }
-.header h1 i {
-  margin-right: 10px; }
+  .header div {
+    display: none; }
+  .header h1 {
+    font-size: 2.4rem;
+    color: #fff;
+    line-height: 60px;
+    margin-left: 15px; }
+    .header h1 i {
+      margin-right: 10px; }
 
 /**
  * main
@@ -104,8 +104,8 @@ textarea:disabled {
   box-shadow: 1px 0 3px rgba(0, 0, 0, 0.35);
   z-index: 8;
   line-height: 2; }
-.left .active {
-  background-color: #eee; }
+  .left .active {
+    background-color: #eee; }
 
 .all-tasks {
   top: 0;
@@ -124,17 +124,17 @@ textarea:disabled {
   top: 69px;
   bottom: 60px;
   overflow-y: auto; }
-.list h2, .list h3 {
-  font-size: 1.6rem;
-  padding-left: 15px;
-  cursor: pointer;
-  position: relative; }
-.list h2:hover, .list h3:hover {
-  background-color: #eee; }
-.list h2:hover .fa-trash-o, .list h3:hover .fa-trash-o {
-  display: block; }
-.list h3 {
-  padding-left: 30px; }
+  .list h2, .list h3 {
+    font-size: 1.6rem;
+    padding-left: 15px;
+    cursor: pointer;
+    position: relative; }
+    .list h2:hover, .list h3:hover {
+      background-color: #eee; }
+      .list h2:hover .fa-trash-o, .list h3:hover .fa-trash-o {
+        display: block; }
+  .list h3 {
+    padding-left: 30px; }
 
 .fa-trash-o {
   display: none;
@@ -155,9 +155,9 @@ textarea:disabled {
   -webkit-transition: 0.2s ease;
   -moz-transition: 0.2s ease;
   -o-transition: 0.2s ease; }
-.add:hover {
-  background-color: #C1C3DE;
-  color: #343521; }
+  .add:hover {
+    background-color: #C1C3DE;
+    color: #343521; }
 
 /**
  * mid
@@ -184,20 +184,20 @@ textarea:disabled {
   top: 0;
   text-align: center;
   border-bottom: 1px dashed #A6A6A6; }
-.status button {
-  width: 60px;
-  height: 30px;
-  margin: 13px 5px;
-  background-color: #D8D8D8;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  transition: 0.2s ease;
-  -webkit-transition: 0.2s ease;
-  -moz-transition: 0.2s ease;
-  -o-transition: 0.2s ease; }
-.status .active {
-  cursor: default; }
+  .status button {
+    width: 60px;
+    height: 30px;
+    margin: 13px 5px;
+    background-color: #D8D8D8;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease; }
+  .status .active {
+    cursor: default; }
 
 .task-list {
   width: 100%;
@@ -206,21 +206,21 @@ textarea:disabled {
   line-height: 2;
   font-size: 1.4rem;
   overflow-y: auto; }
-.task-list div {
-  line-height: 2.3;
-  background-color: #dadada;
-  padding-left: 10px; }
-.task-list li {
-  padding-left: 20px;
-  cursor: pointer;
-  transition: 0.2s ease-out;
-  -webkit-transition: 0.2s ease-out;
-  -moz-transition: 0.2s ease-out;
-  -o-transition: 0.2s ease-out; }
-.task-list li:hover {
-  background-color: #FbFbFb; }
-.task-list .active {
-  background-color: #FbFbFb; }
+  .task-list div {
+    line-height: 2.3;
+    background-color: #dadada;
+    padding-left: 10px; }
+  .task-list li {
+    padding-left: 20px;
+    cursor: pointer;
+    transition: 0.2s ease-out;
+    -webkit-transition: 0.2s ease-out;
+    -moz-transition: 0.2s ease-out;
+    -o-transition: 0.2s ease-out; }
+    .task-list li:hover {
+      background-color: #FbFbFb; }
+  .task-list .active {
+    background-color: #FbFbFb; }
 
 .task-done {
   color: #24692B; }
@@ -239,11 +239,11 @@ textarea:disabled {
   z-index: 6;
   background-color: #fff;
   font-size: 1.6rem; }
-.right input {
-  font-size: 1.6rem;
-  border: 1px solid #AEAEAE; }
-.right input:focus {
-  border: 1px solid #404040; }
+  .right input {
+    font-size: 1.6rem;
+    border: 1px solid #AEAEAE; }
+    .right input:focus {
+      border: 1px solid #404040; }
 
 .title {
   width: 100%;
@@ -266,9 +266,9 @@ textarea:disabled {
   font-size: 26px;
   padding-right: 20px;
   float: right; }
-.manipulate a {
-  margin-right: 15px;
-  cursor: pointer; }
+  .manipulate a {
+    margin-right: 15px;
+    cursor: pointer; }
 
 .task-date {
   width: 100%;
@@ -304,12 +304,12 @@ textarea:disabled {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
-.button-area button {
-  height: 34px;
-  border: none;
-  cursor: pointer;
-  padding: 8px 20px;
-  margin-left: 15px; }
+  .button-area button {
+    height: 34px;
+    border: none;
+    cursor: pointer;
+    padding: 8px 20px;
+    margin-left: 15px; }
 
 .info {
   color: #B35690; }
@@ -384,32 +384,32 @@ textarea:disabled {
   font-size: 1.6rem;
   line-height: 2.2;
   border-top: 1px dashed #C6CAE0; }
-.modal-body select, .modal-body input {
-  width: 160px;
-  height: 24px;
-  padding-left: 5px;
-  border: 1px solid #C6CAE0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
+  .modal-body select, .modal-body input {
+    width: 160px;
+    height: 24px;
+    padding-left: 5px;
+    border: 1px solid #C6CAE0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
 
 .modal-foot {
   text-align: right;
   padding-top: 12px;
   padding-right: 20px; }
-.modal-foot button {
-  background-color: #D8D8D8;
-  border: none;
-  cursor: pointer;
-  padding: 5px 20px;
-  margin-left: 10px;
-  transition: 0.2s ease;
-  -webkit-transition: 0.2s ease;
-  -moz-transition: 0.2s ease;
-  -o-transition: 0.2s ease; }
-.modal-foot button:hover {
-  background-color: #A8AAC5;
-  color: #fff; }
+  .modal-foot button {
+    background-color: #D8D8D8;
+    border: none;
+    cursor: pointer;
+    padding: 5px 20px;
+    margin-left: 10px;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -o-transition: 0.2s ease; }
+    .modal-foot button:hover {
+      background-color: #A8AAC5;
+      color: #fff; }
 
 /**
  * mobile fit
@@ -417,20 +417,20 @@ textarea:disabled {
 @media screen and (max-width: 770px) {
   .header {
     height: 44px; }
-  .header div {
-    display: none;
-    position: absolute;
-    left: 15px;
-    bottom: 10px;
-    font-size: 1.4rem;
-    color: #fff; }
-  .header h1 {
-    text-align: center;
-    margin-left: 0;
-    line-height: 44px;
-    font-size: 2rem; }
-  .header h1 i {
-    margin-right: 6px; }
+    .header div {
+      display: none;
+      position: absolute;
+      left: 15px;
+      bottom: 10px;
+      font-size: 1.4rem;
+      color: #fff; }
+    .header h1 {
+      text-align: center;
+      margin-left: 0;
+      line-height: 44px;
+      font-size: 2rem; }
+      .header h1 i {
+        margin-right: 6px; }
 
   .main {
     top: 44px;
@@ -471,8 +471,8 @@ textarea:disabled {
     right: 20px;
     bottom: 0;
     padding-bottom: 5px; }
-  .button-area button {
-    height: 32px; }
+    .button-area button {
+      height: 32px; }
 
   .input-title {
     padding: 5px 10px;
@@ -500,10 +500,10 @@ textarea:disabled {
   .modal-body {
     font-size: 1.4rem;
     line-height: 2.8; }
-  .modal-body select, .modal-body input {
-    width: 160px;
-    height: 28px;
-    padding-left: 5px; }
+    .modal-body select, .modal-body input {
+      width: 160px;
+      height: 28px;
+      padding-left: 5px; }
 
   /**
    * animation
@@ -527,5 +527,3 @@ textarea:disabled {
   .page-pre-pre {
     -webkit-transform: translate3d(-200%, 0, 0);
     transform: translate3d(-200%, 0, 0); } }
-
-/*# sourceMappingURL=index.css.map */
