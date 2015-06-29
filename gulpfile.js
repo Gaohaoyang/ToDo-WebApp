@@ -45,4 +45,5 @@ gulp.task('watchCssJavaScript',function() {
 // 自动压缩 CSS JavaScript
 gulp.task('acj',['minify-css','js','watchCssJavaScript']);
 
+// 完整的自动流程
 gulp.task('default',['asb','acj']);
