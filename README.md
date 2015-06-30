@@ -10,7 +10,7 @@
 * 手机查看 ↓ 二维码 ↓
     
     ![todoWebApp](http://7q5cdt.com1.z0.glb.clouddn.com/task4-code-todoWebApp.png)
-
+* [版本更新日志](https://github.com/Gaohaoyang/ToDo-WebApp/releases)
 * [我的博客 HyG](http://gaohaoyang.github.io)
 
 ## Details
