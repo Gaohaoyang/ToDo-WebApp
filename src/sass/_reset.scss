@@ -18,6 +18,9 @@ html{
  */
 body{
     font-family:$base-ff;
+
+    //  safari mobile click flash bug
+    -webkit-tap-highlight-color: transparent;
 }
 button,select,input,textarea{
     font-family: $base-ff;
@@ -30,6 +33,8 @@ i {
 textarea:disabled {
     color:#000;
     background: #fff;
+    -webkit-text-fill-color: rgba(0, 0, 0, 1); 
+    -webkit-opacity: 1; 
 }
 
 // layout in main and modal
