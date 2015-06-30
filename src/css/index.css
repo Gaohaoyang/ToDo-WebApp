@@ -21,7 +21,8 @@ html {
  * common
  */
 body {
-  font-family: "Microsoft YaHei", "SimHei", "STHeiti", sans-serif; }
+  font-family: "Microsoft YaHei", "SimHei", "STHeiti", sans-serif;
+  -webkit-tap-highlight-color: transparent; }
 
 button, select, input, textarea {
   font-family: "Microsoft YaHei", "SimHei", "STHeiti", sans-serif;
@@ -32,7 +33,9 @@ i {
 
 textarea:disabled {
   color: #000;
-  background: #fff; }
+  background: #fff;
+  -webkit-text-fill-color: black;
+  -webkit-opacity: 1; }
 
 .left, .all-tasks, .cate, .list, .add, .mid, .status, .task-list, .right, .title, .task-date, .content, .cover {
   position: absolute;
@@ -317,6 +320,10 @@ textarea:disabled {
 .save {
   background-color: #95A0D8;
   color: #fff; }
+
+.cancel-save {
+  background-color: #ddd;
+  color: #333; }
 
 .input-title {
   padding: 7px 10px;

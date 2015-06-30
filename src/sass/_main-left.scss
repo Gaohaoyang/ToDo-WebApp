@@ -40,12 +40,14 @@
     padding-left: 15px;
 }
 .list{
+
     @extend %pos;
     width:100%;
     top:64px+$top-gap;
     bottom:60px;
     overflow-y:auto;
     h2,h3{
+        
         font-size: 1.6rem;
         padding-left: 15px;
         cursor: pointer;
